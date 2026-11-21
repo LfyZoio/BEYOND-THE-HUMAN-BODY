@@ -12,21 +12,11 @@ export function Questions() {
   const [topic, setTopic] = useState('all');
   const [started, setStarted] = useState(false);
   const topics = useMemo(() => [...new Set(ALL_QUESTIONS.map(q => q.topic))], []);
-  const filtered = useMemo(() => ALL_QUESTIONS.filter(q =>
-    (module === 'all' || ALL_QUESTIONS.find(x => x.id === q.id) && q.id.startsWith('d') && true) &&
+  const byModule = useMemo(() => ALL_QUESTIONS.filter(q =>
+    (module === 'all' || q.moduleId === Number(module)) &&
     (difficulty === 'all' || q.difficulty === difficulty) &&
     (topic === 'all' || q.topic === topic)
   ), [module, difficulty, topic]);
-  const byModule = useMemo(() => {
-    if (module === 'all') return filtered;
-    const modId = Number(module);
-    const day = ALL_QUESTIONS.filter(q => q.id.startsWith('d'));
-    return day.filter(q => {
-      const d = Number(q.id.slice(1).split('q')[0]);
-      const m = MODULES.find(mm => d >= mm.startDay && d <= mm.endDay);
-      return m?.id === modId;
-    }).filter(q => difficulty === 'all' || q.difficulty === difficulty).filter(q => topic === 'all' || q.topic === topic);
-  }, [module, difficulty, topic, filtered]);
   const modId = module === 'all' ? 1 : Number(module);
   return (
     <div>

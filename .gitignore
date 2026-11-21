@@ -9,6 +9,7 @@ lerna-debug.log*
 
 node_modules
 dist
+dist-test
 dist-ssr
 *.local
 
@@ -22,3 +23,6 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Auditoria: testes e artefatos
+dist-test/

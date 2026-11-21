@@ -101,7 +101,7 @@ export default function Lab3D({ initialSystem }: { initialSystem?: SystemId }) {
         {quiz && (
           <Card>
             <h3 className="font-bold mb-1">Identificação 3D</h3>
-            <p className="text-sm text-[#9BAFC4] mb-3">A estrutura destacada em azul é: <b className="text-white">{quiz.target.name}</b>? (responda pelo nome)</p>
+            <p className="text-sm text-[#9BAFC4] mb-3">A estrutura destacada em azul é qual? Escolha o nome correto abaixo.</p>
             <div className="space-y-2">
               {quiz.options.map(o => {
                 const picked = quiz.picked === o.id;

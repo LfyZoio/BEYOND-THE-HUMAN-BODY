@@ -74,7 +74,7 @@ function Shell() {
           <span className="text-xs text-[#00C8FF] font-bold">{state.xp} XP</span>
         </header>
         <main className="p-4 md:p-8 max-w-6xl mx-auto">
-          {lessonDay !== null ? <Lesson day={lessonDay} back={() => setLessonDay(null)} />
+          {lessonDay !== null ? <Lesson day={lessonDay} back={() => setLessonDay(null)} openLab={() => { setLessonDay(null); setPage('lab'); }} />
             : page === 'dashboard' ? <Dashboard go={go} />
             : page === 'jornada' ? <Journey go={go} />
             : page === 'plano' ? <DailyPlan openLesson={openLesson} />

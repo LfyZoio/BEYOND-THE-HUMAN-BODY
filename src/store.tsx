@@ -2,10 +2,19 @@ import { createContext, useContext, useEffect, useMemo, useState, type ReactNode
 import type { AnswerRecord, FlashcardDef, ProgressState, SessionRecord } from './types';
 import { DAYS_A } from './data/contentA';
 import { DAYS_B } from './data/contentB';
+import { DAYS_C } from './data/contentC';
+import { DAYS_D } from './data/contentD';
+import { DAYS_E } from './data/contentE';
+import { DAYS_F } from './data/contentF';
+import { DAYS_G } from './data/contentG';
+import { DAYS_H } from './data/contentH';
+import { DAYS_I } from './data/contentI';
+import { DAYS_J } from './data/contentJ';
+import { DAYS_K } from './data/contentK';
 import { MODULES } from './data/curriculum';
 import { gradeCardState, computeMastery, masteryLabel } from './lib/srs';
 
-export const ALL_DAYS = [...DAYS_A, ...DAYS_B];
+export const ALL_DAYS = [...DAYS_A, ...DAYS_B, ...DAYS_C, ...DAYS_D, ...DAYS_E, ...DAYS_F, ...DAYS_G, ...DAYS_H, ...DAYS_I, ...DAYS_J, ...DAYS_K];
 export const ALL_FLASHCARDS: FlashcardDef[] = [...ALL_DAYS.flatMap(d => d.flashcards)];
 export const ALL_QUESTIONS = ALL_DAYS.flatMap(d => d.questions.map(q => ({ ...q, moduleId: d.moduleId })));
 

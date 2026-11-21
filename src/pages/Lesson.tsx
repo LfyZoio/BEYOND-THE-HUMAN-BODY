@@ -4,7 +4,7 @@ import { MODULES } from '../data/curriculum';
 import { Card, PageTitle } from '../components/ui';
 import { QuizRunner, FlashcardRunner } from '../components/runners';
 
-export function Lesson({ day, back }: { day: number; back: () => void }) {
+export function Lesson({ day, back, openLab }: { day: number; back: () => void; openLab?: () => void }) {
   const { state, completeLesson, addSession } = useStore();
   const [tab, setTab] = useState<'aula' | 'questoes' | 'flashcards'>('aula');
   const [timer, setTimer] = useState(0);
@@ -47,6 +47,8 @@ export function Lesson({ day, back }: { day: number; back: () => void }) {
             <h3 className="font-bold mb-2">Resumo da aula</h3>
             <p className="text-sm leading-relaxed">{content.summary}</p>
           </Card>
+          {content.activity && <Card><h3 className="font-bold mb-2">Atividade prática / identificação anatômica</h3><p className="text-sm leading-relaxed">{content.activity}</p></Card>}
+          {content.review && <Card><h3 className="font-bold mb-2">Revisão do conteúdo anterior</h3><p className="text-sm leading-relaxed">{content.review}</p></Card>}
           <Card>
             <h3 className="font-bold mb-3">Glossário</h3>
             <div className="grid md:grid-cols-2 gap-3">{content.glossary.map(g => <div key={g.term} className="border border-[#26364A] rounded-xl p-3"><b className="text-[#00C8FF]">{g.term}</b><p className="text-sm text-[#9BAFC4]">{g.def}</p></div>)}</div>
@@ -54,6 +56,7 @@ export function Lesson({ day, back }: { day: number; back: () => void }) {
           <div className="flex flex-wrap gap-2 no-print">
             <button className="btn-primary" onClick={() => setTab('questoes')}>Responder questões</button>
             <button className="btn-ghost" onClick={() => setTab('flashcards')}>Revisar flashcards</button>
+            {openLab && <button className="btn-ghost" onClick={openLab}>Explorar no Laboratório 3D</button>}
             {!done && <button className="btn-ghost !border-green-500/60" onClick={() => { completeLesson(day, content.estimatedMinutes); alert('Aula concluída! +50 XP'); }}>Marcar aula como concluída</button>}
             {done && <span className="badge bg-green-500/20 text-green-400 self-center">Aula concluída</span>}
           </div>

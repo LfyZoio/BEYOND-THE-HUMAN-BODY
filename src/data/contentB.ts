@@ -3,6 +3,8 @@ import type { DayContent } from '../types';
 export const DAYS_B: DayContent[] = [
 {
   day: 5, title: 'Eixos e Movimentos', subtitle: 'Eixo longitudinal, transversal e sagital; flexão, extensão, abdução, adução, rotação e circundução', moduleId: 1, estimatedMinutes: 40,
+  activity: "Em pé, execute flexão/extensão do joelho e diga o plano (sagital) e o eixo (transversal); repita com abdução/adução do ombro (frontal/sagital) e rotação da cabeça (transversal/longitudinal).",
+  review: "Revise do Dia 4: planos e eixos são a base mecânica dos movimentos de hoje.",
   objectives: ['Identificar os três eixos anatômicos','Definir os movimentos articulares','Relacionar movimentos a eixos e planos'],
   sections: [
     { heading: 'Os três eixos anatômicos', body: 'Eixos são linhas imaginárias perpendiculares aos planos. O eixo longitudinal (vertical) é perpendicular ao plano transversal. O eixo transversal (horizontal, da esquerda para a direita) é perpendicular ao plano sagital. O eixo sagital (anteroposterior) é perpendicular ao plano frontal. Cada movimento ocorre em torno de um eixo.', points: ['Longitudinal: perpendicular ao transversal','Transversal: perpendicular ao sagital','Sagital: perpendicular ao frontal','Cada movimento ocorre em torno de um eixo'] },
@@ -46,6 +48,8 @@ export const DAYS_B: DayContent[] = [
 },
 {
   day: 6, title: 'Regiões e Cavidades Corporais', subtitle: 'Divisões corporais, cavidades craniana, vertebral, torácica, abdominal e pélvica', moduleId: 1, estimatedMinutes: 45,
+  activity: "Palpe o diafragma inspirando fundo; diga quais cavidades ele separa e cite um órgão de cada cavidade.",
+  review: "Revise do Dia 5: a flexão/extensão do tronco ocorre na cavidade abdominal (reto abdominal) e a respiração na torácica (diafragma).",
   objectives: ['Identificar as grandes regiões corporais','Descrever as cavidades corporais','Localizar órgãos em suas cavidades'],
   sections: [
     { heading: 'Divisões corporais', body: 'O corpo é dividido em cabeça, pescoço, tronco (tórax, abdome e pelve) e membros superiores e inferiores. Essa divisão regional é a base da anatomia topográfica: cada região é estudada com suas estruturas e relações. O tronco é a parte central, entre pescoço e membros.', points: ['Cabeça, pescoço, tronco e membros','Tronco = tórax + abdome + pelve','Base da anatomia topográfica'] },
@@ -98,6 +102,8 @@ export const DAYS_B: DayContent[] = [
 },
 {
   day: 7, title: 'Revisão Geral — Semana 1', subtitle: 'Revisão dos seis primeiros dias e avaliação semanal', moduleId: 1, estimatedMinutes: 60,
+  activity: "Mapa da semana: escreva de memória a sequência Dia 1 → Dia 6 e o conceito-chave de cada dia; confira com o material.",
+  review: "Revise os Dias 1–6 inteiros — a avaliação semanal cobra todos os tópicos.",
   objectives: ['Revisar conceitos, posição, direção, planos, eixos e cavidades','Identificar conteúdos que precisam de reforço','Realizar a avaliação semanal'],
   sections: [
     { heading: 'Mapa da semana', body: 'Na primeira semana você aprendeu a linguagem da anatomia: o que ela é e suas divisões (Dia 1), a posição anatômica como referência (Dia 2), os termos de direção (Dia 3), os planos (Dia 4), os eixos e movimentos (Dia 5) e as regiões e cavidades (Dia 6). Revise cada tópico com seus flashcards antes da avaliação.', points: ['Dia 1: conceito e divisões','Dia 2: posição anatômica','Dia 3: termos de direção','Dia 4: planos anatômicos','Dia 5: eixos e movimentos','Dia 6: regiões e cavidades'] },

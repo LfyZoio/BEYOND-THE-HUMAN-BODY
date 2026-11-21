@@ -2,10 +2,12 @@ import { createContext, useContext, useEffect, useMemo, useState, type ReactNode
 import type { AnswerRecord, FlashcardDef, ProgressState, SessionRecord } from './types';
 import { DAYS_A } from './data/contentA';
 import { DAYS_B } from './data/contentB';
+import { DAYS_C } from './data/contentC';
+import { DAYS_D } from './data/contentD';
 import { MODULES } from './data/curriculum';
 import { gradeCardState, computeMastery, masteryLabel } from './lib/srs';
 
-export const ALL_DAYS = [...DAYS_A, ...DAYS_B];
+export const ALL_DAYS = [...DAYS_A, ...DAYS_B, ...DAYS_C, ...DAYS_D];
 export const ALL_FLASHCARDS: FlashcardDef[] = [...ALL_DAYS.flatMap(d => d.flashcards)];
 export const ALL_QUESTIONS = ALL_DAYS.flatMap(d => d.questions.map(q => ({ ...q, moduleId: d.moduleId })));
 

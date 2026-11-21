@@ -204,7 +204,7 @@ export function DailyPlan({ openLesson }: { openLesson: (day: number) => void })
         <div className="grid grid-cols-10 md:grid-cols-15 gap-1" style={{ gridTemplateColumns: 'repeat(auto-fill,minmax(34px,1fr))' }}>
           {Array.from({ length: 90 }, (_, i) => i + 1).map(day => {
             const done = state.completedLessons.includes(`day-${day}`);
-            const hasContent = day <= 7;
+            const hasContent = ALL_DAYS.some(d => d.day === day);
             return <button key={day} disabled={!hasContent} onClick={() => hasContent && openLesson(day)} title={hasContent ? `Dia ${day}` : `Dia ${day} — conteúdo do currículo (em expansão)`}
               className={`aspect-square rounded-lg text-xs font-bold border ${done ? 'bg-green-500/20 border-green-500 text-green-400' : hasContent ? 'border-[#00C8FF]/50 text-[#00C8FF]' : 'border-[#26364A] text-[#9BAFC4]/50'}`}>{day}</button>;
           })}

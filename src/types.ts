@@ -3,7 +3,7 @@ export type SystemId = 'fundamentos'|'esqueletico'|'articular'|'muscular'|'nervo
 export interface LessonSection { heading: string; body: string; points?: string[] }
 export interface Question { id: string; q: string; options: string[]; answer: number; explanation: string; whyWrong?: string; difficulty: 'iniciante'|'intermediario'|'avancado'; topic: string; type?: string }
 export interface FlashcardDef { id: string; front: string; back: string; category: string; moduleId: number }
-export interface DayContent { day: number; title: string; subtitle: string; moduleId: number; objectives: string[]; sections: LessonSection[]; summary: string; glossary: { term: string; def: string }[]; questions: Question[]; flashcards: FlashcardDef[]; estimatedMinutes: number }
+export interface DayContent { day: number; title: string; subtitle: string; moduleId: number; objectives: string[]; sections: LessonSection[]; summary: string; glossary: { term: string; def: string }[]; questions: Question[]; flashcards: FlashcardDef[]; estimatedMinutes: number; activity?: string; review?: string }
 
 export interface ModuleDef { id: number; title: string; system: SystemId; systemName: string; description: string; objectives: string[]; lessons: string[]; startDay: number; endDay: number; level: 1|2|3; color: string }
 

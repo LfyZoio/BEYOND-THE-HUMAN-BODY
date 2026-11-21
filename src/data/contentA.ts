@@ -3,6 +3,8 @@ import type { DayContent } from '../types';
 export const DAYS_A: DayContent[] = [
 {
   day: 1, title: 'Introdução à Anatomia', subtitle: 'Conceito, importância, divisões e vocabulário fundamental', moduleId: 1, estimatedMinutes: 30,
+  activity: "Identifique, no Laboratório 3D, as cavidades que protegem o encéfalo e a medula; diga uma função de proteção de cada (craniana e vertebral).",
+  review: "Nada a revisar — este é o dia 1. Ao final, anote seu objetivo pessoal para os 90 dias.",
   objectives: ['Definir anatomia e explicar sua importância','Listar as divisões da anatomia','Reconhecer o vocabulário fundamental da área'],
   sections: [
     { heading: 'O que é anatomia?', body: 'Anatomia é a ciência que estuda a estrutura do corpo humano: seus órgãos, sistemas e as relações entre eles. A palavra vem do grego "anatome", que significa "cortar em partes" — referência histórica aos estudos de dissecação. Compreender anatomia é compreender como o corpo é organizado para funcionar como um todo integrado.', points: ['Anatomia estuda estrutura e organização corporal','A função das estruturas é estudada em conjunto (anatomia funcional)','O conhecimento anatômico é base para saúde, esporte, estética e ciências biomédicas'] },
@@ -46,6 +48,8 @@ export const DAYS_A: DayContent[] = [
 },
 {
   day: 2, title: 'Posição Anatômica', subtitle: 'Definição, características e aplicação da posição de referência', moduleId: 1, estimatedMinutes: 30,
+  activity: "Assuma a posição anatômica em frente a um espelho: mãos, face e pés. Diga por que as palmas ficam para a frente.",
+  review: "Revise do Dia 1: os níveis de organização do corpo (célula → tecido → órgão → sistema).",
   objectives: ['Definir a posição anatômica','Descrever suas características','Aplicar a posição anatômica em descrições'],
   sections: [
     { heading: 'Definição', body: 'A posição anatômica é a posição de referência universal para descrever o corpo humano. Nela, o indivíduo está em pé (ortostático), com os pés unidos e paralelos, os membros superiores ao longo do corpo, as palmas das mãos voltadas para frente e o olhar dirigido para frente. Todas as descrições anatômicas partem desta posição.', points: ['Em pé, pés unidos e paralelos','Membros superiores ao longo do corpo','Palmas voltadas para frente','Olhar dirigido para frente'] },
@@ -86,6 +90,8 @@ export const DAYS_A: DayContent[] = [
 },
 {
   day: 3, title: 'Termos de Direção', subtitle: 'Superior, inferior, anterior, posterior, medial, lateral, proximal, distal e mais', moduleId: 1, estimatedMinutes: 35,
+  activity: "Descreva, usando apenas termos de direção, a posição do coração em relação ao esterno e ao diafragma.",
+  review: "Revise do Dia 2: a posição anatômica padroniza todos os termos usados hoje.",
   objectives: ['Aplicar termos de direção anatômica','Diferenciar pares opostos de termos','Descrever localizações com precisão'],
   sections: [
     { heading: 'Superior / inferior e anterior / posterior', body: 'Superior (cranial) indica o que está acima; inferior (caudal) indica o que está abaixo — sempre em relação à posição anatômica. Anterior (ventral) é a frente do corpo; posterior (dorsal) é o dorso. Exemplo: o coração é posterior ao esterno e inferior à clavícula.', points: ['Superior = acima; inferior = abaixo','Anterior/ventral = frente; posterior/dorsal = dorso','Ex.: coração posterior ao esterno'] },
@@ -129,6 +135,8 @@ export const DAYS_A: DayContent[] = [
 },
 {
   day: 4, title: 'Planos Anatômicos', subtitle: 'Sagital, mediano, frontal e transversal — e suas aplicações', moduleId: 1, estimatedMinutes: 35,
+  activity: "Desenhe o corpo em corte sagital, frontal e transversal e diga o que cada plano mostra. Relacione com exames de imagem conhecidos.",
+  review: "Revise do Dia 3: termos de direção — aplicados agora aos planos (ex.: medial/lateral no plano sagital).",
   objectives: ['Identificar os planos anatômicos','Descrever as divisões produzidas por cada plano','Aplicar planos em exames de imagem'],
   sections: [
     { heading: 'O que são planos anatômicos?', body: 'Planos anatômicos são superfícies imaginárias que dividem o corpo em partes, permitindo descrever cortes e localizações. São definidos a partir da posição anatômica e se cruzam em ângulos retos. Compreender os planos é essencial para interpretar exames de imagem como tomografia e ressonância, que produzem imagens nesses planos.', points: ['Superfícies imaginárias que dividem o corpo','Definidos a partir da posição anatômica','Base das imagens de tomografia e ressonância'] },

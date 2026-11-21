@@ -15,7 +15,7 @@ export function Lesson({ day, back, openLab }: { day: number; back: () => void; 
   const mod = MODULES.find(m => m.id === content.moduleId);
   const done = state.completedLessons.includes(`day-${day}`);
   const toggleTimer = () => {
-    if (timing) { addSession(Math.max(1, Math.round(timer / 60)), `Estudo — Dia ${day}`); setTiming(false); setTimer(0); }
+    if (timing) { addSession(Math.floor(timer / 60), `Estudo — Dia ${day}`); setTiming(false); setTimer(0); }
     else setTiming(true);
   };
   return (
@@ -57,7 +57,7 @@ export function Lesson({ day, back, openLab }: { day: number; back: () => void; 
             <button className="btn-primary" onClick={() => setTab('questoes')}>Responder questões</button>
             <button className="btn-ghost" onClick={() => setTab('flashcards')}>Revisar flashcards</button>
             {openLab && <button className="btn-ghost" onClick={openLab}>Explorar no Laboratório 3D</button>}
-            {!done && <button className="btn-ghost !border-green-500/60" onClick={() => { completeLesson(day, content.estimatedMinutes); alert('Aula concluída! +50 XP'); }}>Marcar aula como concluída</button>}
+            {!done && <button className="btn-ghost !border-green-500/60" onClick={() => { completeLesson(day, 0); alert('Aula concluída! +50 XP'); }}>Marcar aula como concluída</button>}
             {done && <span className="badge bg-green-500/20 text-green-400 self-center">Aula concluída</span>}
           </div>
         </div>

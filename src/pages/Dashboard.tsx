@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react';
 import { useStore, ALL_DAYS } from '../store';
-import { MODULES, SYSTEMS, moduleForDay, dayTitle } from '../data/curriculum';
+import { MODULES, SYSTEMS } from '../data/curriculum';
 import { Bar, Card, Donut, Empty, LineChart, PageTitle, Stat, fmtMinutes } from '../components/ui';
 import type { Page } from '../App';
 
@@ -11,7 +11,8 @@ export function Dashboard({ go }: { go: (p: Page) => void }) {
   const greeting = hour < 12 ? 'Bom dia' : hour < 18 ? 'Boa tarde' : 'Boa noite';
   const today = new Date().toLocaleDateString('pt-BR', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
   const dayNumber = Math.min(90, Math.max(1, Math.floor((Date.now() - new Date(state.startedAt).getTime()) / 86400000) + 1));
-  const currentModule = moduleForDay(dayNumber);
+  const currentDay = ALL_DAYS.find(d => d.day === dayNumber);
+  const currentModule = MODULES.find(m => m.id === currentDay?.moduleId);
   const nextDay = ALL_DAYS.find(d => !state.completedLessons.includes(`day-${d.day}`));
   const weekData = useMemo(() => {
     const arr: number[] = [];
@@ -43,7 +44,7 @@ export function Dashboard({ go }: { go: (p: Page) => void }) {
           <div>
             <span className="badge bg-[#00C8FF] text-[#04121F]">Continue sua jornada</span>
             <h2 className="text-xl font-extrabold mt-2">{nextDay ? `Dia ${nextDay.day} — ${nextDay.title}` : 'Jornada concluída!'}</h2>
-            <p className="text-[#9BAFC4] text-sm mt-1">Módulo em andamento: {currentModule.title} · {dayTitle(currentModule, dayNumber)} · Meta diária: {state.settings.dailyMinutes} min</p>
+            <p className="text-[#9BAFC4] text-sm mt-1">Módulo em andamento: {currentModule?.title} · {currentDay?.title} · Meta diária: {state.settings.dailyMinutes} min</p>
             <div className="mt-3 max-w-md"><Bar pct={overall} /></div>
             <p className="text-xs text-[#9BAFC4] mt-1">Progresso geral do curso: {overall}% (calculado por aulas + questões + retenção)</p>
           </div>
@@ -139,15 +140,16 @@ export function Journey({ go }: { go: (p: Page) => void }) {
       <div className="space-y-3">
         {MODULES.map(m => {
           const p = mastery(m.id).pct;
-          const done = state.completedModules.includes(m.id);
-          const current = dayNumber >= m.startDay && dayNumber <= m.endDay;
+          const moduleDays = ALL_DAYS.filter(d => d.moduleId === m.id);
+          const done = moduleDays.length > 0 && moduleDays.every(d => state.completedLessons.includes(`day-${d.day}`));
+          const current = moduleDays.some(d => d.day === dayNumber);
           return (
             <Card key={m.id} className={current ? '!border-[#00C8FF]/60' : ''}>
               <div className="flex flex-col md:flex-row md:items-center gap-3 justify-between">
                 <div className="flex-1">
                   <div className="flex items-center gap-2 flex-wrap">
                     <span className="badge" style={{ background: m.color + '22', color: m.color }}>Módulo {m.id}</span>
-                    <span className="badge bg-[#26364A] text-[#9BAFC4]">Dias {m.startDay}–{m.endDay} · Nível {m.level}</span>
+                    <span className="badge bg-[#26364A] text-[#9BAFC4]">Dias {moduleDays[0]?.day}–{moduleDays[moduleDays.length - 1]?.day} · Nível {m.level}</span>
                     {done && <span className="badge bg-green-500/20 text-green-400">Concluído</span>}
                     {current && <span className="badge bg-[#00C8FF] text-[#04121F]">Em andamento</span>}
                   </div>
@@ -172,7 +174,7 @@ export function DailyPlan({ openLesson }: { openLesson: (day: number) => void })
   const days = ALL_DAYS.filter(d => filter === 'all' ? true : filter === 'done' ? state.completedLessons.includes(`day-${d.day}`) : !state.completedLessons.includes(`day-${d.day}`));
   return (
     <div>
-      <PageTitle title="Plano Diário" sub="Os 7 primeiros dias estão completos com aulas, questões e flashcards. Dias 8–90 seguem o currículo dos 15 módulos." />
+      <PageTitle title="Plano Diário" sub="90 dias de aulas, questões e flashcards distribuídos em 15 módulos." />
       <div className="flex gap-2 mb-4 no-print">
         {(['all', 'pending', 'done'] as const).map(f => (
           <button key={f} onClick={() => setFilter(f)} className={`px-4 py-2 rounded-full text-sm font-semibold border ${filter === f ? 'bg-[#00C8FF] text-[#04121F]' : 'border-[#26364A] text-[#9BAFC4]'}`}>
@@ -209,7 +211,7 @@ export function DailyPlan({ openLesson }: { openLesson: (day: number) => void })
               className={`aspect-square rounded-lg text-xs font-bold border ${done ? 'bg-green-500/20 border-green-500 text-green-400' : hasContent ? 'border-[#00C8FF]/50 text-[#00C8FF]' : 'border-[#26364A] text-[#9BAFC4]/50'}`}>{day}</button>;
           })}
         </div>
-        <p className="text-xs text-[#9BAFC4] mt-2">Dias 1–7 completos e estudáveis. Dias 8–90 estruturados no currículo; o conteúdo detalhado é expandido módulo a módulo (ver Biblioteca e Sistemas).</p>
+        <p className="text-xs text-[#9BAFC4] mt-2">Todos os 90 dias possuem conteúdo disponível para estudo.</p>
       </Card>
     </div>
   );

@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useMemo, useState, type ReactNode } from 'react';
+import { createContext, useContext, useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
 import type { AnswerRecord, FlashcardDef, ProgressState, SessionRecord } from './types';
 import { DAYS_A } from './data/contentA';
 import { DAYS_B } from './data/contentB';
@@ -35,13 +35,30 @@ function defaultState(): ProgressState {
   };
 }
 
-function load(): ProgressState {
+// Backups antigos podem omitir campos, mas campos presentes devem ter tipos seguros.
+function isValidBackup(value: unknown): value is ProgressState {
+  if (!value || typeof value !== 'object' || Array.isArray(value)) return false;
+  const p = value as Record<string, unknown>;
+  if (!p.settings || typeof p.settings !== 'object' || Array.isArray(p.settings)) return false;
+  const arrays = ['completedLessons', 'completedModules', 'answers', 'customCards', 'favorites', 'readArticles', 'sessions', 'id3d', 'assessments'];
+  if (arrays.some(k => k in p && !Array.isArray(p[k]))) return false;
+  if ('cards' in p && (!p.cards || typeof p.cards !== 'object' || Array.isArray(p.cards))) return false;
+  const isObject = (x: unknown): x is Record<string, unknown> => !!x && typeof x === 'object' && !Array.isArray(x);
+  if (Array.isArray(p.answers) && !p.answers.every(x => isObject(x) && typeof x.topic === 'string' && typeof x.correct === 'boolean' && typeof x.moduleId === 'number')) return false;
+  if (Array.isArray(p.sessions) && !p.sessions.every(x => isObject(x) && typeof x.minutes === 'number' && typeof x.date === 'string')) return false;
+  if (Array.isArray(p.customCards) && !p.customCards.every(x => isObject(x) && typeof x.id === 'string' && typeof x.front === 'string' && typeof x.moduleId === 'number')) return false;
+  if (isObject(p.cards) && !Object.values(p.cards).every(x => isObject(x) && typeof x.ease === 'number' && typeof x.reps === 'number' && typeof x.lapses === 'number' && typeof x.interval === 'number' && typeof x.due === 'string' && Array.isArray(x.history))) return false;
+  return true;
+}
+
+function load(): { state: ProgressState; protectedBackup: boolean } {
   try {
     const raw = localStorage.getItem(KEY);
-    if (!raw) return defaultState();
-    const parsed = JSON.parse(raw) as ProgressState;
-    return { ...defaultState(), ...parsed, settings: { ...DEFAULT_SETTINGS, ...parsed.settings } };
-  } catch { return defaultState(); }
+    if (!raw) return { state: defaultState(), protectedBackup: false };
+    const parsed: unknown = JSON.parse(raw);
+    if (!isValidBackup(parsed)) return { state: defaultState(), protectedBackup: true };
+    return { state: { ...defaultState(), ...parsed, settings: { ...DEFAULT_SETTINGS, ...parsed.settings } }, protectedBackup: false };
+  } catch { return { state: defaultState(), protectedBackup: true }; }
 }
 
 interface Store {
@@ -73,8 +90,10 @@ export const useStore = () => { const c = useContext(Ctx); if (!c) throw new Err
 
 
 export function StoreProvider({ children }: { children: ReactNode }) {
-  const [state, setState] = useState<ProgressState>(load);
-  useEffect(() => { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch { /* quota */ } }, [state]);
+  const [loaded] = useState(load);
+  const [state, setState] = useState<ProgressState>(loaded.state);
+  const protectedBackup = useRef(loaded.protectedBackup);
+  useEffect(() => { if (!protectedBackup.current) { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch { /* quota */ } } }, [state]);
 
   const touch = (s: ProgressState, minutes: number, activity: string): ProgressState => {
     const today = todayStr();
@@ -82,7 +101,7 @@ export function StoreProvider({ children }: { children: ReactNode }) {
     const streak = s.lastStudyDate === today ? s.streak : (s.lastStudyDate === yesterday ? s.streak + 1 : 1);
     // minutes === 0: registra a atividade (sequência/XP) sem inflar o tempo de estudo.
     const sessions: SessionRecord[] = minutes > 0 ? [...s.sessions, { date: today, minutes, activity }] : s.sessions;
-    return { ...s, streak, lastStudyDate: today, sessions: sessions.slice(-365) };
+    return { ...s, streak, lastStudyDate: today, sessions };
   };
 
   const store: Store = useMemo(() => {
@@ -94,9 +113,9 @@ export function StoreProvider({ children }: { children: ReactNode }) {
     const mastery = (moduleId: number) => {
       const ans = state.answers.filter(a => a.moduleId === moduleId);
       const correct = ans.filter(a => a.correct).length;
-      const lessons = MODULES.find(m => m.id === moduleId);
-      const totalLessons = lessons ? lessons.lessons.length : 1;
-      const lessonsDone = lessons ? lessons.lessons.filter((_, i) => state.completedLessons.includes(`day-${lessons.startDay + i}`)).length : 0;
+      const moduleDays = ALL_DAYS.filter(d => d.moduleId === moduleId);
+      const totalLessons = moduleDays.length;
+      const lessonsDone = moduleDays.filter(d => state.completedLessons.includes(`day-${d.day}`)).length;
       const cardIds = allCards.filter(c => c.moduleId === moduleId).map(c => c.id);
       const reviewed = cardIds.filter(id => state.cards[id] && state.cards[id].reps > 0).length;
       const { pct, label } = computeMastery({ lessonsDone, totalLessons, answered: ans.length, correct, cardsReviewed: reviewed, totalCards: cardIds.length });
@@ -150,7 +169,7 @@ export function StoreProvider({ children }: { children: ReactNode }) {
       }),
       recordAnswer: (q) => setState(s => {
         const rec: AnswerRecord = { questionId: q.id, correct: q.correct, date: todayStr(), moduleId: q.moduleId, topic: q.topic, source: q.source };
-        return touch({ ...s, answers: [...s.answers.slice(-2000), rec], xp: s.xp + (q.correct ? 10 : 2) }, 0, `Questão (${q.source})`);
+        return touch({ ...s, answers: [...s.answers, rec], xp: s.xp + (q.correct ? 10 : 2) }, 0, `Questão (${q.source})`);
       }),
       gradeCard: (id, grade) => setState(s => {
         const next = gradeCardState(s.cards[id], grade, todayStr());
@@ -162,20 +181,21 @@ export function StoreProvider({ children }: { children: ReactNode }) {
       toggleFavorite: (id) => setState(s => ({ ...s, favorites: s.favorites.includes(id) ? s.favorites.filter(f => f !== id) : [...s.favorites, id] })),
       markRead: (id) => setState(s => ({ ...s, readArticles: s.readArticles.includes(id) ? s.readArticles : [...s.readArticles, id] })),
       addSession: (minutes, activity) => setState(s => touch(s, minutes, activity)),
-      recordId3d: (structureId, correct) => setState(s => ({ ...s, id3d: [...s.id3d.slice(-500), { structureId, correct, date: todayStr() }], xp: s.xp + (correct ? 15 : 3) })),
+      recordId3d: (structureId, correct) => setState(s => ({ ...s, id3d: [...s.id3d, { structureId, correct, date: todayStr() }], xp: s.xp + (correct ? 15 : 3) })),
       addAssessment: (a) => setState(s => ({ ...s, assessments: [...s.assessments, a], xp: s.xp + a.score * 5 })),
       updateSettings: (patch) => setState(s => ({ ...s, settings: { ...s.settings, ...patch } })),
       importJSON: (json) => {
         try {
           const parsed = JSON.parse(json) as ProgressState;
-          if (!parsed || typeof parsed !== 'object' || !('settings' in parsed)) return false;
+          if (!isValidBackup(parsed)) return false;
+          protectedBackup.current = false;
           setState({ ...defaultState(), ...parsed, settings: { ...DEFAULT_SETTINGS, ...parsed.settings } });
           return true;
         } catch { return false; }
       },
-      resetAll: () => setState(defaultState()),
+      resetAll: () => { protectedBackup.current = false; setState(defaultState()); },
     };
   }, [state]);
 
-  return <Ctx.Provider value={store}>{children}</Ctx.Provider>;
+  return <Ctx.Provider value={store}>{loaded.protectedBackup && protectedBackup.current && <div role="alert" style={{ padding: '12px', background: '#7f1d1d', color: 'white' }}>Os dados locais não puderam ser lidos. O registro original foi preservado; alterações desta sessão não serão salvas. Exporte uma cópia do localStorage e importe um backup válido em Configurações.</div>}{children}</Ctx.Provider>;
 }

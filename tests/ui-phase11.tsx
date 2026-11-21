@@ -1,0 +1,37 @@
+import { JSDOM } from 'jsdom';
+import { strict as assert } from 'node:assert';
+const dom = new JSDOM('<div id="root"></div>', {url:'http://localhost/', pretendToBeVisual:true});
+for (const k of ['window','document','localStorage','HTMLElement','Node','MutationObserver','Event','MouseEvent','getComputedStyle']) Object.defineProperty(globalThis,k,{value:(dom.window as never)[k],configurable:true});
+Object.defineProperty(globalThis,'navigator',{value:dom.window.navigator,configurable:true});
+(globalThis as Record<string, unknown>).IS_REACT_ACT_ENVIRONMENT = true;
+const React = await import('react');
+const {act} = React;
+const {createRoot} = await import('react-dom/client');
+const {StoreProvider, useStore, ALL_DAYS} = await import('../src/store');
+const {Assessments, Flashcards} = await import('../src/pages/Practice');
+let store: ReturnType<typeof useStore>;
+function Probe() { store = useStore(); return null; }
+const root = createRoot(document.getElementById('root')!);
+const click = async (text: string) => {
+ const button = [...document.querySelectorAll('button')].find(b => b.textContent?.includes(text));
+ assert.ok(button, `Botão não encontrado: ${text}`);
+ await act(async () => { button.dispatchEvent(new dom.window.MouseEvent('click',{bubbles:true})); });
+};
+await act(async () => {root.render(<StoreProvider><Probe/><Assessments/></StoreProvider>);});
+await click('Iniciar avaliação');
+const first = ALL_DAYS.slice(0,6).flatMap(d => d.questions).find(q => document.body.textContent?.includes(q.q));
+assert.ok(first, 'Avaliação semanal usa dias 1–6');
+const qText = first.q;
+await click(first.options[0]);
+assert.ok(document.body.textContent?.includes(qText), 'questão não muda ao registrar resposta');
+assert.equal(store!.state.answers[0].moduleId, 1);
+assert.equal(store!.stats.totalMinutes, 0);
+await act(async () => {root.render(<StoreProvider><Probe/><Flashcards/></StoreProvider>);});
+const [f1,f2] = ALL_DAYS[0].flashcards;
+assert.ok(document.body.textContent?.includes(f1.front));
+await click(f1.front); await click('Fácil');
+assert.ok(document.body.textContent?.includes(f2.front), 'revisão não pula o próximo cartão quando a lista de vencidos muda');
+assert.equal(store!.state.cards[f1.id].interval, 3);
+assert.equal(store!.stats.totalMinutes, 0);
+await act(async () => root.unmount());
+console.log('Interações jsdom: avaliação estável, origem semanal, módulo, SM-2 e sequência de flashcards verificadas.');

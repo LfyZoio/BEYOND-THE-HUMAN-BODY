@@ -143,6 +143,7 @@ export function Settings() {
             <input ref={importRef} type="file" accept="application/json,.json" className="hidden" onChange={e => {
               const f = e.target.files?.[0];
               if (!f) return;
+              if (!confirm('Importar substituirá os dados atuais deste navegador. Exporte um backup antes de continuar. Deseja prosseguir?')) { e.target.value = ''; return; }
               f.text().then(t => { const ok = importJSON(t); alert(ok ? 'Dados importados com sucesso.' : 'Arquivo inválido: não é um backup do ANATOMIA 3D.'); e.target.value = ''; });
             }} />
             <button className="btn-ghost !border-red-500/60 !text-red-400" onClick={() => { if (confirm('Apagar todo o progresso? Esta ação não pode ser desfeita.')) resetAll(); }}>Apagar todo o progresso</button>

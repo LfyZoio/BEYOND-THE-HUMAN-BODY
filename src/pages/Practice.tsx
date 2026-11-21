@@ -81,7 +81,7 @@ export function Flashcards() {
           {MODULES.map(m => <option key={m.id} value={m.id}>Módulo {m.id}</option>)}
         </select>
       </div>
-      <FlashcardRunner cards={cards} title="Memorização" />
+      <FlashcardRunner key={`${filter}-${module}-${state.customCards.length}`} cards={cards} title="Memorização" />
       <Card className="mt-4 no-print">
         <h3 className="font-bold mb-3">Criar flashcard</h3>
         <div className="grid md:grid-cols-3 gap-3">
@@ -139,10 +139,10 @@ export function SmartReview() {
 
 export function Assessments() {
   const { state, addAssessment } = useStore();
-  const [active, setActive] = useState<{ title: string; moduleId: number; count: number } | null>(null);
+  const [active, setActive] = useState<{ title: string; moduleId: number; questions: typeof ALL_QUESTIONS } | null>(null);
   const [last, setLast] = useState<{ score: number; total: number } | null>(null);
-  const weekly = ALL_QUESTIONS.filter(q => q.id.startsWith('d7'));
-  const start = (title: string, moduleId: number, count: number) => setActive({ title, moduleId, count });
+  const weekly = ALL_QUESTIONS.filter(q => /^d[1-6]q/.test(q.id));
+  const start = (title: string, moduleId: number, count: number, pool = ALL_QUESTIONS) => setActive({ title, moduleId, questions: [...pool].sort(() => Math.random() - 0.5).slice(0, count) });
   return (
     <div>
       <PageTitle title="Avaliações" sub="Avaliações diárias, semanais, por módulo e final — com correção automática e registro de resultados." />
@@ -150,12 +150,12 @@ export function Assessments() {
         <Card className="card-hover">
           <h3 className="font-bold">Avaliação semanal — Semana 1</h3>
           <p className="text-sm text-[#9BAFC4] mt-1">25 questões misturadas dos Dias 1–6. Relatório de desempenho ao final.</p>
-          <button className="btn-primary mt-3" onClick={() => start('Avaliação semanal — Semana 1', 1, 25)}>Iniciar avaliação</button>
+          <button className="btn-primary mt-3" onClick={() => start('Avaliação semanal — Semana 1', 1, 25, weekly)}>Iniciar avaliação</button>
         </Card>
         <Card className="card-hover">
           <h3 className="font-bold">Avaliação do Módulo 1 — Fundamentos</h3>
-          <p className="text-sm text-[#9BAFC4] mt-1">Questões dos Dias 1–7 sobre conceitos, posição, direção, planos, eixos e cavidades.</p>
-          <button className="btn-primary mt-3" onClick={() => start('Avaliação do Módulo 1', 1, 20)}>Iniciar avaliação</button>
+          <p className="text-sm text-[#9BAFC4] mt-1">Questões do Módulo 1 sobre conceitos, posição, direção, planos, eixos e cavidades.</p>
+          <button className="btn-primary mt-3" onClick={() => start('Avaliação do Módulo 1', 1, 20, ALL_QUESTIONS.filter(q => q.moduleId === 1))}>Iniciar avaliação</button>
         </Card>
         <Card className="card-hover">
           <h3 className="font-bold">Simulado geral</h3>
@@ -164,12 +164,12 @@ export function Assessments() {
         </Card>
         <Card className="card-hover">
           <h3 className="font-bold">Avaliação final (Dia 90)</h3>
-          <p className="text-sm text-[#9BAFC4] mt-1">Disponível quando o conteúdo dos 15 módulos estiver expandido. Estrutura pronta.</p>
-          <button className="btn-ghost mt-3" disabled>Em expansão</button>
+          <p className="text-sm text-[#9BAFC4] mt-1">30 questões de todo o banco, com registro do resultado.</p>
+          <button className="btn-primary mt-3" onClick={() => start('Avaliação final — Dia 90', 15, 30)}>Iniciar avaliação</button>
         </Card>
       </div>
       {active && (
-        <QuizRunner key={active.title} questions={(active.title.includes('semanal') ? weekly : [...ALL_QUESTIONS].sort(() => Math.random() - 0.5)).slice(0, active.count)}
+        <QuizRunner key={active.title} questions={active.questions}
           moduleId={active.moduleId} source={active.title}
           onDone={(score, total) => { addAssessment({ id: `a-${Date.now()}`, title: active.title, score, total, date: new Date().toISOString().slice(0, 10), moduleId: active.moduleId }); setLast({ score, total }); setActive(null); }} />
       )}

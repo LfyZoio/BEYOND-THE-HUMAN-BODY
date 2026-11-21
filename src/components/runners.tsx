@@ -35,7 +35,7 @@ export function QuizRunner({ questions, moduleId, source, onDone }: { questions:
           const isPicked = picked === i;
           const isAnswer = i === q.answer;
           return (
-            <button key={i} disabled={picked !== null} onClick={() => { setPicked(i); if (i === q.answer) setScore(s => s + 1); recordAnswer({ id: q.id, answer: i, correct: i === q.answer, moduleId, topic: q.topic, source }); }}
+            <button key={i} disabled={picked !== null} onClick={() => { setPicked(i); if (i === q.answer) setScore(s => s + 1); recordAnswer({ id: q.id, answer: i, correct: i === q.answer, moduleId: ('moduleId' in q && typeof q.moduleId === 'number') ? q.moduleId : moduleId, topic: q.topic, source }); }}
               className={`w-full text-left px-4 py-3 rounded-xl border transition ${picked === null ? 'border-[#26364A] hover:border-[#00C8FF]' : isAnswer ? 'border-green-500 bg-green-500/10' : isPicked ? 'border-red-500 bg-red-500/10' : 'border-[#26364A] opacity-60'}`}>
               <span className="font-bold text-[#00C8FF] mr-2">{'ABCD'[i]}.</span>{opt}
             </button>
@@ -58,6 +58,8 @@ export function QuizRunner({ questions, moduleId, source, onDone }: { questions:
 
 export function FlashcardRunner({ cards, title }: { cards: FlashcardDef[]; title: string }) {
   const { gradeCard, state } = useStore();
+  const [sessionCards] = useState(() => cards);
+  cards = sessionCards;
   const [idx, setIdx] = useState(0);
   const [flipped, setFlipped] = useState(false);
   const [done, setDone] = useState(0);

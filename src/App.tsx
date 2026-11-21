@@ -4,7 +4,7 @@ import { StoreProvider, useStore } from './store';
 import { Dashboard, Journey, DailyPlan } from './pages/Dashboard';
 import { Lesson } from './pages/Lesson';
 import { Library as LibraryPage, Systems } from './pages/Library';
-import Lab3D from './components/Lab3D';
+import Lab3D from './components/LazyLab3D';
 import { Questions, Flashcards, SmartReview, Assessments } from './pages/Practice';
 import { Performance, Profile, Settings } from './pages/Performance';
 import { PageTitle } from './components/ui';

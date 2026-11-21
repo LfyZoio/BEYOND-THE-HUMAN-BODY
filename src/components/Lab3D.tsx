@@ -11,7 +11,7 @@ const SYSTEM_LABELS: Record<string, string> = {
   respiratorio: 'Respiratório', digestorio: 'Digestório', urinario: 'Urinário', reprodutor: 'Reprodutor', tegumentar: 'Tegumentar',
 };
 
-function ShapeMesh({ s, selected, dimmed, onSelect }: { s: StructureDef; selected: boolean; dimmed: boolean; onSelect: (s: StructureDef) => void }) {
+function ShapeMesh({ s, selected, dimmed, showLabel, onSelect }: { s: StructureDef; selected: boolean; dimmed: boolean; showLabel: boolean; onSelect: (s: StructureDef) => void }) {
   const common = {
     position: s.pos as unknown as [number, number, number],
     scale: s.scale as unknown as [number, number, number],
@@ -30,7 +30,7 @@ function ShapeMesh({ s, selected, dimmed, onSelect }: { s: StructureDef; selecte
   return (
     <mesh {...common}>
       {geo}{mat}
-      {selected && (
+      {selected && showLabel && (
         <Html position={[0, 0.9, 0]} center>
           <div style={{ background: '#00C8FF', color: '#04121F', fontWeight: 800, fontSize: 12, padding: '4px 10px', borderRadius: 999, whiteSpace: 'nowrap' }}>{s.name}</div>
         </Html>
@@ -55,6 +55,7 @@ export default function Lab3D({ initialSystem }: { initialSystem?: SystemId }) {
     const target = items[Math.floor(Math.random() * items.length)];
     const others = items.filter(s => s.id !== target.id).sort(() => Math.random() - 0.5).slice(0, 3);
     const options = [...others, target].sort(() => Math.random() - 0.5);
+    setIsolate(false);
     setQuiz({ target, options, picked: null });
     setSelected(target);
   };
@@ -82,10 +83,10 @@ export default function Lab3D({ initialSystem }: { initialSystem?: SystemId }) {
             <directionalLight position={[-5, 3, -5]} intensity={0.4} />
             <Suspense fallback={null}>
               {visible.map(s => (
-                <ShapeMesh key={s.id} s={s} selected={selected?.id === s.id} dimmed={!!selected && selected.id !== s.id && !isolate} onSelect={setSelected} />
+                <ShapeMesh key={s.id} s={s} selected={selected?.id === s.id} dimmed={!!selected && selected.id !== s.id && !isolate} showLabel={!quiz || !!quiz.picked} onSelect={quiz && !quiz.picked ? () => {} : setSelected} />
               ))}
             </Suspense>
-            <OrbitControls enableDamping makeDefault />
+            <OrbitControls target={[0, 1.3, 0]} enableDamping makeDefault />
             <gridHelper args={[10, 10, '#26364A', '#142033']} position={[0, -0.4, 0]} />
           </Canvas>
         </div>
@@ -94,7 +95,7 @@ export default function Lab3D({ initialSystem }: { initialSystem?: SystemId }) {
           <button className="btn-primary !py-2 !px-3 text-sm" onClick={startQuiz}>Atividade de identificação</button>
           <span className="text-sm text-[#9BAFC4] self-center">Arraste para girar · scroll para zoom · clique numa estrutura para selecionar</span>
         </div>
-        <p className="px-4 pb-4 text-xs text-[#9BAFC4]">Modelos esquemáticos procedurais gerados com Three.js (geometrias primitivas) para estudo das relações espaciais. A estrutura técnica do visualizador (carregamento GLB/GLTF sob demanda, estados de carregamento e erro) está pronta para receber modelos anatômicos licenciados — nenhum modelo inexistente é apresentado como real.</p>
+        <p className="px-4 pb-4 text-xs text-[#9BAFC4]">Modelos esquemáticos procedurais gerados com Three.js (geometrias primitivas) para estudo das relações espaciais. Nenhum modelo anatômico licenciado está incluído.</p>
       </Card>
 
       <div className="space-y-4">
@@ -114,7 +115,7 @@ export default function Lab3D({ initialSystem }: { initialSystem?: SystemId }) {
             <p className="text-xs text-[#9BAFC4] mt-2">Acertos: {quizScore.right}/{quizScore.total} · Registrados no seu desempenho.</p>
           </Card>
         )}
-        {selected ? (
+        {selected && (!quiz || quiz.picked) ? (
           <Card>
             <div className="flex items-start justify-between gap-2">
               <div><h3 className="text-lg font-extrabold">{selected.name}</h3><p className="text-sm text-[#00C8FF] italic">{selected.scientific}</p></div>
@@ -137,7 +138,7 @@ export default function Lab3D({ initialSystem }: { initialSystem?: SystemId }) {
         <Card>
           <h4 className="font-bold mb-2">Estruturas deste sistema ({items.length})</h4>
           <div className="flex flex-wrap gap-2">
-            {items.map(s => <button key={s.id} onClick={() => setSelected(s)} className={`px-3 py-1.5 rounded-full text-xs font-semibold border ${selected?.id === s.id ? 'bg-[#00C8FF] text-[#04121F]' : 'border-[#26364A] text-[#9BAFC4]'}`}>{s.name}</button>)}
+            {items.map(s => <button key={s.id} disabled={!!quiz && !quiz.picked} onClick={() => setSelected(s)} className={`px-3 py-1.5 rounded-full text-xs font-semibold border ${selected?.id === s.id && (!quiz || quiz.picked) ? 'bg-[#00C8FF] text-[#04121F]' : 'border-[#26364A] text-[#9BAFC4]'}`}>{s.name}</button>)}
           </div>
           <p className="text-xs text-[#9BAFC4] mt-3">Identificações registradas: {state.id3d.length} · acertos: {state.id3d.filter(x => x.correct).length}</p>
         </Card>

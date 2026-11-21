@@ -1,0 +1,7 @@
+import { chromium } from 'playwright-core';
+import assert from 'node:assert/strict';import fs from 'node:fs';
+const profile='/tmp/anatomia-profile-11';fs.rmSync(profile,{recursive:true,force:true});
+const opts={executablePath:process.env.CHROMIUM_PATH || '/tmp/chromium',headless:true,args:['--no-sandbox','--disable-dev-shm-usage','--use-gl=angle','--use-angle=swiftshader','--enable-unsafe-swiftshader']};
+let c=await chromium.launchPersistentContext(profile,opts), p=await c.newPage(); await p.goto('http://127.0.0.1:5173'); await p.getByRole('button',{name:'Plano Diário'}).click();await p.getByRole('button',{name:'Iniciar aula'}).first().click();p.on('dialog',d=>d.accept());await p.getByRole('button',{name:'Marcar aula como concluída'}).click();await p.waitForTimeout(500); await c.close();
+c=await chromium.launchPersistentContext(profile,opts);p=await c.newPage();await p.goto('http://127.0.0.1:5173');assert((await p.evaluate(()=>JSON.parse(localStorage.anatomia3d_v1))).completedLessons.includes('day-1'));console.log('Perfil persistente: fechamento e reabertura preservam progresso.');
+await p.evaluate(()=>localStorage.setItem('anatomia3d_v1','{corrompido'));await p.reload();assert(await p.getByRole('alert').isVisible());await p.waitForTimeout(300);assert.equal(await p.evaluate(()=>localStorage.getItem('anatomia3d_v1')),'{corrompido');console.log('Dados locais inválidos: alerta e preservação do registro original.');await c.close();

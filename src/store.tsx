@@ -6,10 +6,11 @@ import { DAYS_C } from './data/contentC';
 import { DAYS_D } from './data/contentD';
 import { DAYS_E } from './data/contentE';
 import { DAYS_F } from './data/contentF';
+import { DAYS_G } from './data/contentG';
 import { MODULES } from './data/curriculum';
 import { gradeCardState, computeMastery, masteryLabel } from './lib/srs';
 
-export const ALL_DAYS = [...DAYS_A, ...DAYS_B, ...DAYS_C, ...DAYS_D, ...DAYS_E, ...DAYS_F];
+export const ALL_DAYS = [...DAYS_A, ...DAYS_B, ...DAYS_C, ...DAYS_D, ...DAYS_E, ...DAYS_F, ...DAYS_G];
 export const ALL_FLASHCARDS: FlashcardDef[] = [...ALL_DAYS.flatMap(d => d.flashcards)];
 export const ALL_QUESTIONS = ALL_DAYS.flatMap(d => d.questions.map(q => ({ ...q, moduleId: d.moduleId })));
 

@@ -49,7 +49,7 @@ ok(lib.includes('biblioteca') || lib.includes('Pesquisar'), 'biblioteca renderiz
 
 console.log('— Banco de Questões —');
 const q = wrap(<Questions />);
-ok(q.includes('507') || q.includes('questões'), 'banco de questões exibe contagem');
+ok(q.includes('597') || q.includes('questões'), 'banco de questões exibe contagem');
 
 console.log('— Centro de Memorização —');
 const fc = wrap(<Flashcards />);

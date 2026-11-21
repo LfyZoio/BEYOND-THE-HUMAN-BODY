@@ -1,12 +1,13 @@
 import { createContext, useContext, useEffect, useMemo, useState, type ReactNode } from 'react';
-import type { AnswerRecord, CardState, FlashcardDef, ProgressState, SessionRecord } from './types';
+import type { AnswerRecord, FlashcardDef, ProgressState, SessionRecord } from './types';
 import { DAYS_A } from './data/contentA';
 import { DAYS_B } from './data/contentB';
 import { MODULES } from './data/curriculum';
+import { gradeCardState, computeMastery, masteryLabel } from './lib/srs';
 
 export const ALL_DAYS = [...DAYS_A, ...DAYS_B];
 export const ALL_FLASHCARDS: FlashcardDef[] = [...ALL_DAYS.flatMap(d => d.flashcards)];
-export const ALL_QUESTIONS = ALL_DAYS.flatMap(d => d.questions);
+export const ALL_QUESTIONS = ALL_DAYS.flatMap(d => d.questions.map(q => ({ ...q, moduleId: d.moduleId })));
 
 const KEY = 'anatomia3d_v1';
 const todayStr = () => new Date().toISOString().slice(0, 10);
@@ -47,6 +48,7 @@ interface Store {
   recordId3d: (structureId: string, correct: boolean) => void;
   addAssessment: (a: ProgressState['assessments'][number]) => void;
   updateSettings: (s: Partial<ProgressState['settings']>) => void;
+  importJSON: (json: string) => boolean;
   resetAll: () => void;
   dueCards: FlashcardDef[];
   mastery: (moduleId: number) => { pct: number; label: string; answered: number; correct: number };
@@ -59,13 +61,7 @@ interface Store {
 const Ctx = createContext<Store | null>(null);
 export const useStore = () => { const c = useContext(Ctx); if (!c) throw new Error('store'); return c; };
 
-function masteryLabel(pct: number) {
-  if (pct <= 0) return 'Não iniciado';
-  if (pct < 40) return 'Em aprendizado';
-  if (pct < 70) return 'Em desenvolvimento';
-  if (pct < 90) return 'Bem consolidado';
-  return 'Domínio demonstrado';
-}
+
 
 export function StoreProvider({ children }: { children: ReactNode }) {
   const [state, setState] = useState<ProgressState>(load);
@@ -75,7 +71,8 @@ export function StoreProvider({ children }: { children: ReactNode }) {
     const today = todayStr();
     const yesterday = new Date(Date.now() - 86400000).toISOString().slice(0, 10);
     const streak = s.lastStudyDate === today ? s.streak : (s.lastStudyDate === yesterday ? s.streak + 1 : 1);
-    const sessions: SessionRecord[] = [...s.sessions, { date: today, minutes, activity }];
+    // minutes === 0: registra a atividade (sequência/XP) sem inflar o tempo de estudo.
+    const sessions: SessionRecord[] = minutes > 0 ? [...s.sessions, { date: today, minutes, activity }] : s.sessions;
     return { ...s, streak, lastStudyDate: today, sessions: sessions.slice(-365) };
   };
 
@@ -91,13 +88,10 @@ export function StoreProvider({ children }: { children: ReactNode }) {
       const lessons = MODULES.find(m => m.id === moduleId);
       const totalLessons = lessons ? lessons.lessons.length : 1;
       const lessonsDone = lessons ? lessons.lessons.filter((_, i) => state.completedLessons.includes(`day-${lessons.startDay + i}`)).length : 0;
-      const lessonPct = totalLessons ? (lessonsDone / totalLessons) * 30 : 0;
-      const qPct = ans.length ? (correct / ans.length) * 50 : 0;
       const cardIds = allCards.filter(c => c.moduleId === moduleId).map(c => c.id);
       const reviewed = cardIds.filter(id => state.cards[id] && state.cards[id].reps > 0).length;
-      const cardPct = cardIds.length ? (reviewed / cardIds.length) * 20 : 0;
-      const pct = Math.round(lessonPct + qPct + cardPct);
-      return { pct, label: masteryLabel(pct), answered: ans.length, correct };
+      const { pct, label } = computeMastery({ lessonsDone, totalLessons, answered: ans.length, correct, cardsReviewed: reviewed, totalCards: cardIds.length });
+      return { pct, label, answered: ans.length, correct };
     };
     const systemMastery = (system: string) => {
       const mods = MODULES.filter(m => m.system === system);
@@ -115,7 +109,7 @@ export function StoreProvider({ children }: { children: ReactNode }) {
       ...forgotten.slice(0, 3).map(c => ({
         title: `Flashcards esquecidos: ${c.front.slice(0, 40)}…`, reason: `Cartão com ${state.cards[c.id].lapses} esquecimentos registrados.`, goal: 'Recuperar a retenção deste conteúdo.', action: 'Revisar no Centro de Memorização.', priority: 2,
       })),
-      ...MODULES.filter(m => m.id <= 2 && mastery(m.id).pct < 50 && mastery(m.id).answered > 0).slice(0, 2).map(m => ({
+      ...MODULES.filter(m => mastery(m.id).pct < 50 && mastery(m.id).answered > 0).slice(0, 2).map(m => ({
         title: `Revisar módulo: ${m.title}`, reason: `Domínio atual de ${mastery(m.id).pct}% (meta: 70%+).`, goal: 'Elevar o domínio do módulo.', action: 'Refazer aulas, questões e flashcards do módulo.', priority: 1,
       })),
     ].sort((a, b) => b.priority - a.priority).slice(0, 6);
@@ -147,18 +141,12 @@ export function StoreProvider({ children }: { children: ReactNode }) {
       }),
       recordAnswer: (q) => setState(s => {
         const rec: AnswerRecord = { questionId: q.id, correct: q.correct, date: todayStr(), moduleId: q.moduleId, topic: q.topic, source: q.source };
-        return touch({ ...s, answers: [...s.answers.slice(-2000), rec], xp: s.xp + (q.correct ? 10 : 2) }, 1, `Questão (${q.source})`);
+        return touch({ ...s, answers: [...s.answers.slice(-2000), rec], xp: s.xp + (q.correct ? 10 : 2) }, 0, `Questão (${q.source})`);
       }),
       gradeCard: (id, grade) => setState(s => {
-        const prev: CardState = s.cards[id] ?? { id, ease: 2.5, interval: 0, reps: 0, lapses: 0, due: todayStr(), history: [] };
-        let { ease, interval, reps, lapses } = prev;
-        if (grade === 0) { lapses += 1; reps = 0; interval = 0; ease = Math.max(1.3, ease - 0.2); }
-        else if (grade === 1) { reps += 1; interval = Math.max(1, Math.round(interval * 0.8)); ease = Math.max(1.3, ease - 0.15); }
-        else if (grade === 2) { reps += 1; interval = interval === 0 ? 1 : Math.max(1, Math.round(interval * 1.2)); }
-        else { reps += 1; interval = interval === 0 ? 3 : Math.max(2, Math.round(interval * ease)); ease = Math.min(3, ease + 0.1); }
-        const due = new Date(Date.now() + interval * 86400000).toISOString().slice(0, 10);
-        const next: CardState = { id, ease, interval, reps, lapses, due, history: [...prev.history.slice(-50), { date: todayStr(), grade }] };
-        return touch({ ...s, cards: { ...s.cards, [id]: next }, xp: s.xp + (grade >= 2 ? 5 : 1) }, 1, 'Flashcards');
+        const next = gradeCardState(s.cards[id], grade, todayStr());
+        next.id = id;
+        return touch({ ...s, cards: { ...s.cards, [id]: next }, xp: s.xp + (grade >= 2 ? 5 : 1) }, 0, 'Flashcards');
       }),
       addCustomCard: (c) => setState(s => ({ ...s, customCards: [...s.customCards, c] })),
       deleteCustomCard: (id) => setState(s => ({ ...s, customCards: s.customCards.filter(c => c.id !== id) })),
@@ -168,6 +156,14 @@ export function StoreProvider({ children }: { children: ReactNode }) {
       recordId3d: (structureId, correct) => setState(s => ({ ...s, id3d: [...s.id3d.slice(-500), { structureId, correct, date: todayStr() }], xp: s.xp + (correct ? 15 : 3) })),
       addAssessment: (a) => setState(s => ({ ...s, assessments: [...s.assessments, a], xp: s.xp + a.score * 5 })),
       updateSettings: (patch) => setState(s => ({ ...s, settings: { ...s.settings, ...patch } })),
+      importJSON: (json) => {
+        try {
+          const parsed = JSON.parse(json) as ProgressState;
+          if (!parsed || typeof parsed !== 'object' || !('settings' in parsed)) return false;
+          setState({ ...defaultState(), ...parsed, settings: { ...DEFAULT_SETTINGS, ...parsed.settings } });
+          return true;
+        } catch { return false; }
+      },
       resetAll: () => setState(defaultState()),
     };
   }, [state]);

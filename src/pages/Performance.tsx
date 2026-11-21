@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useMemo, useRef } from 'react';
 import { useStore } from '../store';
 import { MODULES, SYSTEMS } from '../data/curriculum';
 import { Bar, Card, Donut, Empty, LineChart, PageTitle, Stat, fmtMinutes } from '../components/ui';
@@ -102,7 +102,8 @@ export function Profile() {
 }
 
 export function Settings() {
-  const { state, updateSettings, resetAll } = useStore();
+  const { state, updateSettings, resetAll, importJSON } = useStore();
+  const importRef = useRef<HTMLInputElement>(null);
   const s = state.settings;
   const exportData = () => {
     const blob = new Blob([JSON.stringify(state, null, 2)], { type: 'application/json' });
@@ -138,6 +139,12 @@ export function Settings() {
           <p className="text-sm text-[#9BAFC4] mb-3">Seus dados ficam salvos localmente no navegador (localStorage), em formato pronto para migração futura para PostgreSQL via API.</p>
           <div className="flex flex-wrap gap-2">
             <button className="btn-ghost" onClick={exportData}>Exportar dados (JSON)</button>
+            <button className="btn-ghost" onClick={() => importRef.current?.click()}>Importar dados (JSON)</button>
+            <input ref={importRef} type="file" accept="application/json,.json" className="hidden" onChange={e => {
+              const f = e.target.files?.[0];
+              if (!f) return;
+              f.text().then(t => { const ok = importJSON(t); alert(ok ? 'Dados importados com sucesso.' : 'Arquivo inválido: não é um backup do ANATOMIA 3D.'); e.target.value = ''; });
+            }} />
             <button className="btn-ghost !border-red-500/60 !text-red-400" onClick={() => { if (confirm('Apagar todo o progresso? Esta ação não pode ser desfeita.')) resetAll(); }}>Apagar todo o progresso</button>
           </div>
         </Card>

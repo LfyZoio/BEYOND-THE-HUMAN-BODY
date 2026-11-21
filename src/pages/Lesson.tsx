@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useStore, ALL_DAYS } from '../store';
 import { MODULES } from '../data/curriculum';
 import { Card, PageTitle } from '../components/ui';
@@ -9,12 +9,13 @@ export function Lesson({ day, back }: { day: number; back: () => void }) {
   const [tab, setTab] = useState<'aula' | 'questoes' | 'flashcards'>('aula');
   const [timer, setTimer] = useState(0);
   const [timing, setTiming] = useState(false);
+  const tick = useCallback(() => setTimer(t => t + 1), []);
   const content = ALL_DAYS.find(d => d.day === day);
   if (!content) return <Card>Aula não encontrada.</Card>;
   const mod = MODULES.find(m => m.id === content.moduleId);
   const done = state.completedLessons.includes(`day-${day}`);
   const toggleTimer = () => {
-    if (timing) { addSession(Math.max(1, Math.round(timer / 60)), `Estudo — Dia ${day}`); setTiming(false); }
+    if (timing) { addSession(Math.max(1, Math.round(timer / 60)), `Estudo — Dia ${day}`); setTiming(false); setTimer(0); }
     else setTiming(true);
   };
   return (
@@ -27,7 +28,7 @@ export function Lesson({ day, back }: { day: number; back: () => void }) {
             {t === 'aula' ? 'Aula' : t === 'questoes' ? `Questões (${content.questions.length})` : `Flashcards (${content.flashcards.length})`}</button>
         ))}
         <button className="btn-ghost !py-2 text-sm ml-auto" onClick={toggleTimer}>{timing ? `⏸ Parar cronômetro (${Math.floor(timer / 60)}:${String(timer % 60).padStart(2, '0')})` : '▶ Cronometrar estudo'}</button>
-        {timing && <TimerTick onTick={() => setTimer(t => t + 1)} />}
+        {timing && <TimerTick onTick={tick} />}
       </div>
       {tab === 'aula' && (
         <div className="space-y-4">
@@ -65,6 +66,6 @@ export function Lesson({ day, back }: { day: number; back: () => void }) {
 }
 
 function TimerTick({ onTick }: { onTick: () => void }) {
-  useState(() => { const id = setInterval(onTick, 1000); return () => clearInterval(id); });
+  useEffect(() => { const id = setInterval(onTick, 1000); return () => clearInterval(id); }, [onTick]);
   return null;
 }

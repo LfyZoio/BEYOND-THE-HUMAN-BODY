@@ -1,10 +1,24 @@
-import { Suspense, useMemo, useState } from 'react';
+import { Component, Suspense, lazy, useMemo, useState, type ReactNode } from 'react';
 import { Canvas } from '@react-three/fiber';
-import { OrbitControls, Html } from '@react-three/drei';
+import { OrbitControls, Html, useGLTF } from '@react-three/drei';
+import { RESPIRATORY_URLS } from './respiratoryAssets';
 import { STRUCTURES } from '../data/structures';
 import { useStore } from '../store';
 import type { StructureDef, SystemId } from '../types';
 import { Card, Empty } from './ui';
+
+const RespiratoryPilot = lazy(() => import('./RespiratoryPilot'));
+
+class PilotBoundary extends Component<{ onExit: () => void; children: ReactNode }, { failed: boolean }> {
+  state = { failed: false };
+  static getDerivedStateFromError() { return { failed: true }; }
+  componentDidCatch(error: Error) {
+    // A rejected useLoader promise is cached under the complete URL array.
+    // Evict only failed asset loads so returning and opening again can retry.
+    if (typeof error?.message === 'string' && RESPIRATORY_URLS.some(url => error.message.startsWith(`Could not load ${url}:`))) useGLTF.clear(RESPIRATORY_URLS);
+  }
+  render() { return this.state.failed ? <Card><p role="alert">Não foi possível carregar o piloto respiratório. O laboratório esquemático continua disponível.</p><button className="btn-ghost mt-3" onClick={this.props.onExit}>Voltar ao modelo esquemático</button></Card> : this.props.children; }
+}
 
 const SYSTEM_LABELS: Record<string, string> = {
   esqueletico: 'Esquelético', muscular: 'Muscular', nervoso: 'Nervoso', cardiovascular: 'Cardiovascular',
@@ -41,6 +55,7 @@ function ShapeMesh({ s, selected, dimmed, showLabel, onSelect }: { s: StructureD
 
 export default function Lab3D({ initialSystem }: { initialSystem?: SystemId }) {
   const { recordId3d, state } = useStore();
+  const [pilot, setPilot] = useState(false);
   const [system, setSystem] = useState<SystemId>(initialSystem ?? 'muscular');
   const [selected, setSelected] = useState<StructureDef | null>(null);
   const [isolate, setIsolate] = useState(false);
@@ -66,6 +81,8 @@ export default function Lab3D({ initialSystem }: { initialSystem?: SystemId }) {
     setQuizScore(q => ({ right: q.right + (correct ? 1 : 0), total: q.total + 1 }));
     setQuiz({ ...quiz, picked: id });
   };
+
+  if (pilot) return <PilotBoundary onExit={() => setPilot(false)}><Suspense fallback={<Card><p role="status">Carregando modelos respiratórios…</p><button className="btn-ghost mt-3" onClick={() => setPilot(false)}>Voltar ao modelo esquemático</button></Card>}><RespiratoryPilot onExit={() => setPilot(false)} /></Suspense></PilotBoundary>;
 
   return (
     <div className="grid lg:grid-cols-[1fr_360px] gap-4">
@@ -93,6 +110,7 @@ export default function Lab3D({ initialSystem }: { initialSystem?: SystemId }) {
         <div className="flex flex-wrap gap-2 p-4 border-t border-[#26364A] no-print">
           <button className="btn-ghost !py-2 !px-3 text-sm" onClick={() => setIsolate(v => !v)}>{isolate ? 'Mostrar todas' : 'Isolar selecionada'}</button>
           <button className="btn-primary !py-2 !px-3 text-sm" onClick={startQuiz}>Atividade de identificação</button>
+          {system === 'respiratorio' && <button className="btn-ghost !py-2 !px-3 text-sm" onClick={() => setPilot(true)}>Abrir piloto anatômico experimental</button>}
           <span className="text-sm text-[#9BAFC4] self-center">Arraste para girar · scroll para zoom · clique numa estrutura para selecionar</span>
         </div>
         <p className="px-4 pb-4 text-xs text-[#9BAFC4]">Modelos esquemáticos procedurais gerados com Three.js (geometrias primitivas) para estudo das relações espaciais. Nenhum modelo anatômico licenciado está incluído.</p>

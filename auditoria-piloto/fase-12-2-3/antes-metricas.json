@@ -1,0 +1,72 @@
+{
+  "tag": "antes",
+  "browser": "153.0.8010.0",
+  "appMs": 1037,
+  "loadMs": 1582,
+  "full": {
+    "calls": 65,
+    "triangles": 274830,
+    "meshes": 65,
+    "sceneTriangles": 274830,
+    "materials": 65,
+    "programs": 2,
+    "geometries": 65,
+    "textures": 1,
+    "pixelRatio": 1,
+    "shadows": false,
+    "jsHeap": 116000000
+  },
+  "selected": {
+    "calls": 65,
+    "triangles": 274830,
+    "meshes": 65,
+    "sceneTriangles": 274830,
+    "materials": 65,
+    "programs": 4,
+    "geometries": 65,
+    "textures": 1,
+    "pixelRatio": 1,
+    "shadows": false,
+    "jsHeap": 116000000
+  },
+  "isolated": {
+    "calls": 2,
+    "triangles": 1509,
+    "meshes": 2,
+    "sceneTriangles": 1509,
+    "materials": 2,
+    "programs": 4,
+    "geometries": 65,
+    "textures": 1,
+    "pixelRatio": 1,
+    "shadows": false,
+    "jsHeap": 116000000
+  },
+  "rotation": {
+    "frames": 13,
+    "ms": 3249.7999999999993,
+    "fps": 3.6925349252261688
+  },
+  "zoom": {
+    "frames": 64,
+    "ms": 11482.900000000001,
+    "fps": 5.48641893598307
+  },
+  "resources": [
+    {
+      "name": "lung.glb",
+      "size": 10941068,
+      "duration": 131.70000000018626
+    },
+    {
+      "name": "trachea.glb",
+      "size": 1184804,
+      "duration": 63.3000000002794
+    },
+    {
+      "name": "main-bronchus.glb",
+      "size": 422208,
+      "duration": 45.39999999990687
+    }
+  ]
+}

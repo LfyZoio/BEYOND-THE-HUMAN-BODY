@@ -1,0 +1,14 @@
+import { chromium } from 'playwright-core';
+import assert from 'node:assert/strict';
+const base=process.env.TEST_BASE_URL||'http://127.0.0.1:5175';
+const browser=await chromium.launch({executablePath:process.env.CHROMIUM_PATH||'/tmp/chromium',args:['--no-sandbox','--disable-dev-shm-usage','--use-gl=angle','--use-angle=swiftshader','--enable-unsafe-swiftshader']});
+const page=await browser.newPage({viewport:{width:1440,height:900}});
+let requests=0, fail=true, errors=[];page.on('pageerror',e=>errors.push(e.message));
+await page.route('**/models/respiratorio/trachea.glb',r=>{requests++;return fail?r.abort():r.continue()});
+await page.goto(base);await page.locator('nav').getByRole('button',{name:'Laboratório 3D'}).click();await page.getByRole('button',{name:'Respiratório',exact:true}).click();
+const open=page.getByRole('button',{name:'Abrir piloto anatômico experimental'}),back=page.getByRole('button',{name:'Voltar ao modelo esquemático'});
+assert.equal(requests,0, 'GLB da traqueia não deve ser solicitado antes da abertura do piloto');
+await open.click();await page.getByRole('alert').waitFor({timeout:90000});await back.click();fail=false;await open.click();
+let result=await page.waitForFunction(()=>document.querySelector('[role="alert"]') ? 'error' : (document.querySelector('h2')?.textContent?.includes('Piloto respiratório experimental') && ![...document.querySelectorAll('[role="status"]')].some(e=>e.textContent.includes('Carregando modelos 3D')) ? 'loaded' : false),null,{timeout:90000}).then(h=>h.jsonValue());
+assert.equal(result,'loaded');assert.equal(requests,2);assert.equal(errors.length,1);console.log(JSON.stringify({case:'retry-after-transient-failure',result,requests,errors}));
+await browser.close();

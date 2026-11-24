@@ -1,0 +1,151 @@
+{
+  "audit": [
+    {
+      "name": "Pulmão direito",
+      "node": "VH_M_lungs_R",
+      "meshes": [
+        "VH_M_hilum_R",
+        "VH_M_right_lateral_bronchopulmonary_segment",
+        "VH_M_right_medial_bronchopulmonary_segment",
+        "VH_M_hilum_middle_R",
+        "VH_M_hilum_lower_R",
+        "VH_M_right_anterior_basal_bronchopulmonary_segment",
+        "VH_M_right_lateral_basal_bronchopulmonary_segment",
+        "VH_M_right_medial_basal_bronchopulmonary_segment",
+        "VH_M_right_posterior_basal_bronchopulmonary_segment",
+        "VH_M_right_superior_bronchopulmonary_segment",
+        "VH_M_right_apical_bronchopulmonary_segment",
+        "VH_M_right_posterior_bronchopulmonary_segment",
+        "VH_M_right_anterior_bronchopulmonary_segment",
+        "VH_M_hilum_upper_R",
+        "VH_M_cartilage_of_the_lobar_bronchus_R",
+        "VH_M_cartilage_of_the_tertiary_bronchus_R",
+        "VH_M_right_intermediate_bronchus",
+        "VH_M_right_middle_lobar_bronchus",
+        "VH_M_right_superior_lobar_bronchus",
+        "VH_M_right_anterior_bronchus",
+        "VH_M_right_lateral_basal_bronchus",
+        "VH_M_right_lateral_bronchus",
+        "VH_M_right_lower_lobar_bronchus",
+        "VH_M_right_medial_basal_bronchus",
+        "VH_M_right_medial_bronchus",
+        "VH_M_right_posterior_basal",
+        "VH_M_right_posterior_bronchus",
+        "VH_M_right_superior_bronchus",
+        "VH_M_right_apical_bronchus",
+        "VH_M_right_anterior_basal_bronchus",
+        "VH_M_bronchus"
+      ],
+      "visible": 31
+    },
+    {
+      "name": "Pulmão esquerdo",
+      "node": "VH_M_lungs_L",
+      "meshes": [
+        "VH_M_hilum_L",
+        "VH_M_hilum_upper_L",
+        "VH_M_left_lingula_superior_bronchopulmonary_segment",
+        "VH_M_left_posterior_bronchopulmonary_segment",
+        "VH_M_left_anterior_bronchopulmonary_segment",
+        "VH_M_left_apical_bronchopulmonary_segment",
+        "VH_M_left_lingula_inferior_bronchopulmonary_segment",
+        "VH_M_hilum_lower_L",
+        "VH_M_left_anterior_basal_bronchopulmonary_segment",
+        "VH_M_left_lateral_basal_bronchopulmonary_segment",
+        "VH_M_left_medial_basal_bronchopulmonary_segment",
+        "VH_M_left_posetrior_basal_bronchopulmonary_segment",
+        "VH_M_left_superior_bronchopulmonary_segment",
+        "VH_M_cartilage_of_the_lobar_bronchus_L",
+        "VH_M_cartilage_of_the_tertiary_bronchus_L",
+        "VH_M_left_superior_lobar_bronchus",
+        "VH_M_left_inferior_lobar_bronchus",
+        "VH_M_left_superior_bronchus",
+        "VH_M_left_posterior_basal_bronchus",
+        "VH_M_left_medial_basal_bronchus",
+        "VH_M_left_apical_bronchus",
+        "VH_M_left_anterior_bronchus",
+        "VH_M_left_lingular_bronchus",
+        "VH_M_left_lingula_superior_bronchus",
+        "VH_M_left_lingula_inferior_bronchus",
+        "VH_M_left_lateral_basal_bronchus",
+        "VH_M_left_anterior_basal_bronchus"
+      ],
+      "visible": 27
+    },
+    {
+      "name": "Traqueia",
+      "node": "VH_M_trachea_of_respiratory_system",
+      "meshes": [
+        "VH_M_trachea",
+        "VH_M_tracheal_cartilage",
+        "VH_M_carina"
+      ],
+      "visible": 3
+    },
+    {
+      "name": "Brônquio principal direito",
+      "node": "VH_M_right_main_bronchus",
+      "meshes": [
+        "VH_M_right_main_bronchus",
+        "VH_M_cartilage_of_the_main_bronchus_R"
+      ],
+      "visible": 2
+    },
+    {
+      "name": "Brônquio principal esquerdo",
+      "node": "VH_M_left_main_bronchus",
+      "meshes": [
+        "VH_M_left_main_bronchus",
+        "VH_M_cartilage_of_the_main_bronchus_L"
+      ],
+      "visible": 2
+    }
+  ],
+  "clicks": [
+    {
+      "name": "Pulmão direito",
+      "point": {
+        "x": 0.44999999999999996,
+        "y": 0.39999999999999997
+      },
+      "pressed": "true",
+      "actual": [
+        "Ocultar etiqueta",
+        "Pulmão direito"
+      ]
+    },
+    {
+      "name": "Pulmão esquerdo",
+      "point": {
+        "x": 0.5499999999999999,
+        "y": 0.39999999999999997
+      },
+      "pressed": "true",
+      "actual": [
+        "Ocultar etiqueta",
+        "Pulmão esquerdo"
+      ]
+    },
+    {
+      "name": "Traqueia",
+      "point": {
+        "x": 0.49999999999999994,
+        "y": 0.39999999999999997
+      },
+      "pressed": "true",
+      "actual": [
+        "Ocultar etiqueta",
+        "Traqueia"
+      ]
+    },
+    {
+      "name": "Brônquio principal direito",
+      "status": "sem ponto frontal não obstruído na grade"
+    },
+    {
+      "name": "Brônquio principal esquerdo",
+      "status": "sem ponto frontal não obstruído na grade"
+    }
+  ],
+  "errors": []
+}

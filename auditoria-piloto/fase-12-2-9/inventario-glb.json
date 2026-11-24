@@ -1,0 +1,2612 @@
+[
+  {
+    "file": "lung",
+    "bytes": 10941068,
+    "sha256": "97fcec4753c60d5a968b9d92cdc68fe66a44ab19d85dec843cda3a66d3ab43ab",
+    "asset": {
+      "version": "2.0",
+      "generator": "babylon.js glTF exporter for Autodesk MAYA 2023.2 v20220923.2"
+    },
+    "extensionsUsed": [],
+    "glbNodes": 77,
+    "glbMeshDefinitions": 58,
+    "meshInstances": 58,
+    "geometryCount": 58,
+    "materials": [
+      {
+        "name": "lung_mat2",
+        "type": "MeshStandardMaterial",
+        "color": "e5b8ba"
+      },
+      {
+        "name": "VH_M_leftFBXASC032lobarFBXASC032bronchusFBXASC032bronchial_cartilage",
+        "type": "MeshStandardMaterial",
+        "color": "bcbcbc"
+      },
+      {
+        "name": "VH_M_leftFBXASC032tertiaryFBXASC032bronchial_cartilage",
+        "type": "MeshStandardMaterial",
+        "color": "bcbcbc"
+      },
+      {
+        "name": "mucosa_mat4",
+        "type": "MeshStandardMaterial",
+        "color": "f1e8e2"
+      },
+      {
+        "name": "VH_M_rightFBXASC032lobarFBXASC032bronchial_cartilage2",
+        "type": "MeshStandardMaterial",
+        "color": "bcbcbc"
+      },
+      {
+        "name": "VH_M_rightFBXASC032tertiaryFBXASC032bronchial_cartilage1",
+        "type": "MeshStandardMaterial",
+        "color": "bcbcbc"
+      }
+    ],
+    "textures": 0,
+    "images": 0,
+    "sceneScale": [
+      1,
+      1,
+      1
+    ],
+    "scenePosition": [
+      0,
+      0,
+      0
+    ],
+    "sceneQuaternion": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "named": {
+      "VH_M_lungs_R": {
+        "center": [
+          -0.06319014387,
+          0.499356106,
+          0.0025261500000000048
+        ],
+        "min": [
+          -0.124975659,
+          0.385611981,
+          -0.09223983
+        ],
+        "max": [
+          -0.00140462874,
+          0.613100231,
+          0.09729213
+        ],
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ]
+      },
+      "VH_M_lungs_L": {
+        "center": [
+          0.06943445,
+          0.5044107075,
+          0.0032354600000000025
+        ],
+        "min": [
+          0.004425945,
+          0.394072115,
+          -0.0910028
+        ],
+        "max": [
+          0.134442955,
+          0.6147493,
+          0.09747372
+        ],
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ]
+      },
+      "VH_M_bronchi_R": {
+        "center": [
+          -0.0617009482,
+          0.5081071285000001,
+          -0.007301570000000004
+        ],
+        "min": [
+          -0.11000599,
+          0.421887457,
+          -0.07655599
+        ],
+        "max": [
+          -0.0133959064,
+          0.5943268,
+          0.06195285
+        ],
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ]
+      },
+      "VH_M_bronchi_L": {
+        "center": [
+          0.07380086699999999,
+          0.5063860765,
+          -0.01025223175
+        ],
+        "min": [
+          0.02966937,
+          0.417755753,
+          -0.0787448362
+        ],
+        "max": [
+          0.117932364,
+          0.5950164,
+          0.0582403727
+        ],
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ]
+      }
+    },
+    "meshes": [
+      {
+        "name": "VH_M_hilum_L",
+        "parent": "VH_M_lungs_L",
+        "geometry": "",
+        "material": [
+          "lung_mat2"
+        ],
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "worldMin": [
+          0.0279533565,
+          0.471193343,
+          -0.0472632125
+        ],
+        "worldMax": [
+          0.06892774,
+          0.546536,
+          0.0191681
+        ]
+      },
+      {
+        "name": "VH_M_hilum_upper_L",
+        "parent": "VH_M_lungs_L_upper_lobe",
+        "geometry": "",
+        "material": [
+          "lung_mat2"
+        ],
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "worldMin": [
+          0.0305216014,
+          0.479509234,
+          -0.0297244061
+        ],
+        "worldMax": [
+          0.06892774,
+          0.546536,
+          0.0191681
+        ]
+      },
+      {
+        "name": "VH_M_left_lingula_superior_bronchopulmonary_segment",
+        "parent": "VH_M_lungs_L_upper_lobe",
+        "geometry": "",
+        "material": [
+          "lung_mat2"
+        ],
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "worldMin": [
+          0.0114086336,
+          0.431995273,
+          -0.0513277128
+        ],
+        "worldMax": [
+          0.127781391,
+          0.527562737,
+          0.09747372
+        ]
+      },
+      {
+        "name": "VH_M_left_posterior_bronchopulmonary_segment",
+        "parent": "VH_M_lungs_L_upper_lobe",
+        "geometry": "",
+        "material": [
+          "lung_mat2"
+        ],
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "worldMin": [
+          0.004425945,
+          0.517903,
+          -0.0703602359
+        ],
+        "worldMax": [
+          0.110540062,
+          0.603071034,
+          -0.00696167
+        ]
+      },
+      {
+        "name": "VH_M_left_anterior_bronchopulmonary_segment",
+        "parent": "VH_M_lungs_L_upper_lobe",
+        "geometry": "",
+        "material": [
+          "lung_mat2"
+        ],
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "worldMin": [
+          0.008732472,
+          0.493611068,
+          -0.0513277128
+        ],
+        "worldMax": [
+          0.122875042,
+          0.577639341,
+          0.08173208
+        ]
+      },
+      {
+        "name": "VH_M_left_apical_bronchopulmonary_segment",
+        "parent": "VH_M_lungs_L_upper_lobe",
+        "geometry": "",
+        "material": [
+          "lung_mat2"
+        ],
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "worldMin": [
+          0.004425945,
+          0.546352267,
+          -0.0443693921
+        ],
+        "worldMax": [
+          0.103583694,
+          0.6147493,
+          0.02872923
+        ]
+      },
+      {
+        "name": "VH_M_left_lingula_inferior_bronchopulmonary_segment",
+        "parent": "VH_M_lungs_L_upper_lobe",
+        "geometry": "",
+        "material": [
+          "lung_mat2"
+        ],
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "worldMin": [
+          0.0401394069,
+          0.398756146,
+          -0.0185503662
+        ],
+        "worldMax": [
+          0.131162316,
+          0.5053203,
+          0.09677066
+        ]
+      },
+      {
+        "name": "VH_M_hilum_lower_L",
+        "parent": "VH_M_lungs_L_lower_lobe",
+        "geometry": "",
+        "material": [
+          "lung_mat2"
+        ],
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "worldMin": [
+          0.0279533565,
+          0.471193343,
+          -0.0472632125
+        ],
+        "worldMax": [
+          0.06721498,
+          0.539801359,
+          -0.0114582442
+        ]
+      },
+      {
+        "name": "VH_M_left_anterior_basal_bronchopulmonary_segment",
+        "parent": "VH_M_lungs_L_lower_lobe",
+        "geometry": "",
+        "material": [
+          "lung_mat2"
+        ],
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "worldMin": [
+          0.03261816,
+          0.4229523,
+          -0.06125348
+        ],
+        "worldMax": [
+          0.134442955,
+          0.5163688,
+          0.0473889522
+        ]
+      },
+      {
+        "name": "VH_M_left_lateral_basal_bronchopulmonary_segment",
+        "parent": "VH_M_lungs_L_lower_lobe",
+        "geometry": "",
+        "material": [
+          "lung_mat2"
+        ],
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "worldMin": [
+          0.0556210876,
+          0.4083228,
+          -0.08505183
+        ],
+        "worldMax": [
+          0.132003531,
+          0.4990643,
+          -0.003175144
+        ]
+      },
+      {
+        "name": "VH_M_left_medial_basal_bronchopulmonary_segment",
+        "parent": "VH_M_lungs_L_lower_lobe",
+        "geometry": "",
+        "material": [
+          "lung_mat2"
+        ],
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "worldMin": [
+          0.02903921,
+          0.4247201,
+          -0.0510343835
+        ],
+        "worldMax": [
+          0.130380422,
+          0.5265027,
+          0.0473889522
+        ]
+      },
+      {
+        "name": "VH_M_left_posetrior_basal_bronchopulmonary_segment",
+        "parent": "VH_M_lungs_L_lower_lobe",
+        "geometry": "",
+        "material": [
+          "lung_mat2"
+        ],
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "worldMin": [
+          0.0155541794,
+          0.394072115,
+          -0.0910028
+        ],
+        "worldMax": [
+          0.116860174,
+          0.4834827,
+          -0.00731641753
+        ]
+      },
+      {
+        "name": "VH_M_left_superior_bronchopulmonary_segment",
+        "parent": "VH_M_lungs_L_lower_lobe",
+        "geometry": "",
+        "material": [
+          "lung_mat2"
+        ],
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "worldMin": [
+          0.00753526669,
+          0.456127226,
+          -0.0908899754
+        ],
+        "worldMax": [
+          0.104052559,
+          0.5660059,
+          -0.015646724
+        ]
+      },
+      {
+        "name": "VH_M_hilum_R",
+        "parent": "VH_M_lungs_R",
+        "geometry": "",
+        "material": [
+          "lung_mat2"
+        ],
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "worldMin": [
+          -0.0638945,
+          0.460652024,
+          -0.0468960851
+        ],
+        "worldMax": [
+          -0.0138117028,
+          0.5474125,
+          0.0187085718
+        ]
+      },
+      {
+        "name": "VH_M_right_lateral_bronchopulmonary_segment",
+        "parent": "VH_M_lungs_R_middle_lobe",
+        "geometry": "",
+        "material": [
+          "lung_mat2"
+        ],
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "worldMin": [
+          -0.120804556,
+          0.434513837,
+          -0.0281746183
+        ],
+        "worldMax": [
+          -0.03989561,
+          0.509927452,
+          0.0644361451
+        ]
+      },
+      {
+        "name": "VH_M_right_medial_bronchopulmonary_segment",
+        "parent": "VH_M_lungs_R_middle_lobe",
+        "geometry": "",
+        "material": [
+          "lung_mat2"
+        ],
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "worldMin": [
+          -0.112469137,
+          0.413497329,
+          0.009503117
+        ],
+        "worldMax": [
+          -0.00578107825,
+          0.504929543,
+          0.09729213
+        ]
+      },
+      {
+        "name": "VH_M_hilum_middle_R",
+        "parent": "VH_M_lungs_R_middle_lobe",
+        "geometry": "",
+        "material": [
+          "lung_mat2"
+        ],
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "worldMin": [
+          -0.0613132827,
+          0.4852431,
+          -0.01686224
+        ],
+        "worldMax": [
+          -0.0386683457,
+          0.506245434,
+          0.0187085718
+        ]
+      },
+      {
+        "name": "VH_M_hilum_lower_R",
+        "parent": "VH_M_lungs_R_lower_lobe",
+        "geometry": "",
+        "material": [
+          "lung_mat2"
+        ],
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "worldMin": [
+          -0.0638945,
+          0.460652024,
+          -0.0468960851
+        ],
+        "worldMax": [
+          -0.0138117028,
+          0.536912262,
+          -0.00397806149
+        ]
+      },
+      {
+        "name": "VH_M_right_anterior_basal_bronchopulmonary_segment",
+        "parent": "VH_M_lungs_R_lower_lobe",
+        "geometry": "",
+        "material": [
+          "lung_mat2"
+        ],
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "worldMin": [
+          -0.124975659,
+          0.425151318,
+          -0.04978427
+        ],
+        "worldMax": [
+          -0.0363487825,
+          0.505145,
+          0.0490741134
+        ]
+      },
+      {
+        "name": "VH_M_right_lateral_basal_bronchopulmonary_segment",
+        "parent": "VH_M_lungs_R_lower_lobe",
+        "geometry": "",
+        "material": [
+          "lung_mat2"
+        ],
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "worldMin": [
+          -0.124523945,
+          0.405386239,
+          -0.08083151
+        ],
+        "worldMax": [
+          -0.0235656537,
+          0.491501272,
+          -0.0081062885
+        ]
+      },
+      {
+        "name": "VH_M_right_medial_basal_bronchopulmonary_segment",
+        "parent": "VH_M_lungs_R_lower_lobe",
+        "geometry": "",
+        "material": [
+          "lung_mat2"
+        ],
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "worldMin": [
+          -0.07001465,
+          0.4089996,
+          -0.02496827
+        ],
+        "worldMax": [
+          -0.00140462874,
+          0.484994918,
+          0.03067459
+        ]
+      },
+      {
+        "name": "VH_M_right_posterior_basal_bronchopulmonary_segment",
+        "parent": "VH_M_lungs_R_lower_lobe",
+        "geometry": "",
+        "material": [
+          "lung_mat2"
+        ],
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "worldMin": [
+          -0.11206264,
+          0.385611981,
+          -0.09180438
+        ],
+        "worldMax": [
+          -0.00140462874,
+          0.492591769,
+          0.000176563262
+        ]
+      },
+      {
+        "name": "VH_M_right_superior_bronchopulmonary_segment",
+        "parent": "VH_M_lungs_R_lower_lobe",
+        "geometry": "",
+        "material": [
+          "lung_mat2"
+        ],
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "worldMin": [
+          -0.109778494,
+          0.445453525,
+          -0.09223983
+        ],
+        "worldMax": [
+          -0.008172359,
+          0.5495153,
+          -0.0148979276
+        ]
+      },
+      {
+        "name": "VH_M_right_apical_bronchopulmonary_segment",
+        "parent": "VH_M_lungs_R_upper_lobe",
+        "geometry": "",
+        "material": [
+          "lung_mat2"
+        ],
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "worldMin": [
+          -0.06656658,
+          0.5398513,
+          -0.0341742449
+        ],
+        "worldMax": [
+          -0.0111771962,
+          0.613100231,
+          0.0216228012
+        ]
+      },
+      {
+        "name": "VH_M_right_posterior_bronchopulmonary_segment",
+        "parent": "VH_M_lungs_R_upper_lobe",
+        "geometry": "",
+        "material": [
+          "lung_mat2"
+        ],
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "worldMin": [
+          -0.117008656,
+          0.504241347,
+          -0.07416855
+        ],
+        "worldMax": [
+          -0.0111771962,
+          0.6076292,
+          0.00587089546
+        ]
+      },
+      {
+        "name": "VH_M_right_anterior_bronchopulmonary_segment",
+        "parent": "VH_M_lungs_R_upper_lobe",
+        "geometry": "",
+        "material": [
+          "lung_mat2"
+        ],
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "worldMin": [
+          -0.117008656,
+          0.486668736,
+          -0.0131848762
+        ],
+        "worldMax": [
+          -0.00463945372,
+          0.5977232,
+          0.07915453
+        ]
+      },
+      {
+        "name": "VH_M_hilum_upper_R",
+        "parent": "VH_M_lungs_R_upper_lobe",
+        "geometry": "",
+        "material": [
+          "lung_mat2"
+        ],
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "worldMin": [
+          -0.0584151633,
+          0.50368017,
+          -0.0273800455
+        ],
+        "worldMax": [
+          -0.0250186715,
+          0.5474125,
+          0.0179016963
+        ]
+      },
+      {
+        "name": "VH_M_cartilage_of_the_lobar_bronchus_L",
+        "parent": "VH_M_left_bronchial_cartilage",
+        "geometry": "",
+        "material": [
+          "VH_M_leftFBXASC032lobarFBXASC032bronchusFBXASC032bronchial_cartilage"
+        ],
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "worldMin": [
+          0.0366619565,
+          0.480009824,
+          -0.04279642
+        ],
+        "worldMax": [
+          0.06422063,
+          0.5244953,
+          0.0009631431
+        ]
+      },
+      {
+        "name": "VH_M_cartilage_of_the_tertiary_bronchus_L",
+        "parent": "VH_M_left_bronchial_cartilage",
+        "geometry": "",
+        "material": [
+          "VH_M_leftFBXASC032tertiaryFBXASC032bronchial_cartilage"
+        ],
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "worldMin": [
+          0.031029813,
+          0.422246,
+          -0.0763589442
+        ],
+        "worldMax": [
+          0.117335267,
+          0.5916286,
+          0.0521331728
+        ]
+      },
+      {
+        "name": "VH_M_left_superior_lobar_bronchus",
+        "parent": "VH_M_lobar_bronchus_L",
+        "geometry": "",
+        "material": [
+          "mucosa_mat4"
+        ],
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "worldMin": [
+          0.0351436138,
+          0.505993962,
+          -0.0158472229
+        ],
+        "worldMax": [
+          0.0588423125,
+          0.524637043,
+          0.0006700802
+        ]
+      },
+      {
+        "name": "VH_M_left_inferior_lobar_bronchus",
+        "parent": "VH_M_lobar_bronchus_L",
+        "geometry": "",
+        "material": [
+          "mucosa_mat4"
+        ],
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "worldMin": [
+          0.03507214,
+          0.4810667,
+          -0.04414079
+        ],
+        "worldMax": [
+          0.06445145,
+          0.5129399,
+          -0.013865456
+        ]
+      },
+      {
+        "name": "VH_M_left_superior_bronchus",
+        "parent": "VH_M_tertiary_bronchi_L",
+        "geometry": "",
+        "material": [
+          "mucosa_mat4"
+        ],
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "worldMin": [
+          0.0344256237,
+          0.4971937,
+          -0.0615708828
+        ],
+        "worldMax": [
+          0.07328793,
+          0.5274717,
+          -0.0223069955
+        ]
+      },
+      {
+        "name": "VH_M_left_posterior_basal_bronchus",
+        "parent": "VH_M_tertiary_bronchi_L",
+        "geometry": "",
+        "material": [
+          "mucosa_mat4"
+        ],
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "worldMin": [
+          0.02966937,
+          0.417755753,
+          -0.0787448362
+        ],
+        "worldMax": [
+          0.08745166,
+          0.48927927,
+          -0.0181180239
+        ]
+      },
+      {
+        "name": "VH_M_left_medial_basal_bronchus",
+        "parent": "VH_M_tertiary_bronchi_L",
+        "geometry": "",
+        "material": [
+          "mucosa_mat4"
+        ],
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "worldMin": [
+          0.0348612927,
+          0.445087373,
+          -0.0300858021
+        ],
+        "worldMax": [
+          0.11631576,
+          0.492489725,
+          0.0227023978
+        ]
+      },
+      {
+        "name": "VH_M_left_apical_bronchus",
+        "parent": "VH_M_tertiary_bronchi_L",
+        "geometry": "",
+        "material": [
+          "mucosa_mat4"
+        ],
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "worldMin": [
+          0.04453326,
+          0.522149265,
+          -0.03548057
+        ],
+        "worldMax": [
+          0.07655869,
+          0.5950164,
+          -0.000253442529
+        ]
+      },
+      {
+        "name": "VH_M_left_anterior_bronchus",
+        "parent": "VH_M_tertiary_bronchi_L",
+        "geometry": "",
+        "material": [
+          "mucosa_mat4"
+        ],
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "worldMin": [
+          0.0311542023,
+          0.505461156,
+          -0.0155820251
+        ],
+        "worldMax": [
+          0.111233823,
+          0.565294743,
+          0.0582403727
+        ]
+      },
+      {
+        "name": "VH_M_left_lingular_bronchus",
+        "parent": "VH_M_tertiary_bronchi_L",
+        "geometry": "",
+        "material": [
+          "mucosa_mat4"
+        ],
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "worldMin": [
+          0.0544157065,
+          0.488174081,
+          -0.006544032
+        ],
+        "worldMax": [
+          0.0743645,
+          0.510195553,
+          0.013563009
+        ]
+      },
+      {
+        "name": "VH_M_left_lingula_superior_bronchus",
+        "parent": "VH_M_tertiary_bronchi_L",
+        "geometry": "",
+        "material": [
+          "mucosa_mat4"
+        ],
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "worldMin": [
+          0.06876098,
+          0.480986774,
+          0.009964666
+        ],
+        "worldMax": [
+          0.0846505,
+          0.4957165,
+          0.0493362322
+        ]
+      },
+      {
+        "name": "VH_M_left_lingula_inferior_bronchus",
+        "parent": "VH_M_tertiary_bronchi_L",
+        "geometry": "",
+        "material": [
+          "mucosa_mat4"
+        ],
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "worldMin": [
+          0.0702531338,
+          0.457179159,
+          0.007118155
+        ],
+        "worldMax": [
+          0.09892016,
+          0.489706248,
+          0.03634609
+        ]
+      },
+      {
+        "name": "VH_M_left_lateral_basal_bronchus",
+        "parent": "VH_M_tertiary_bronchi_L",
+        "geometry": "",
+        "material": [
+          "mucosa_mat4"
+        ],
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "worldMin": [
+          0.056853693,
+          0.437166274,
+          -0.0627969652
+        ],
+        "worldMax": [
+          0.115260065,
+          0.487532258,
+          -0.0242510643
+        ]
+      },
+      {
+        "name": "VH_M_left_anterior_basal_bronchus",
+        "parent": "VH_M_tertiary_bronchi_L",
+        "geometry": "",
+        "material": [
+          "mucosa_mat4"
+        ],
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "worldMin": [
+          0.0556598157,
+          0.450812817,
+          -0.0489323623
+        ],
+        "worldMax": [
+          0.117932364,
+          0.4939671,
+          -0.004054072
+        ]
+      },
+      {
+        "name": "VH_M_cartilage_of_the_lobar_bronchus_R",
+        "parent": "VH_M_right_bronchial_cartilage",
+        "geometry": "",
+        "material": [
+          "VH_M_rightFBXASC032lobarFBXASC032bronchial_cartilage2"
+        ],
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "worldMin": [
+          -0.05605594,
+          0.489733964,
+          -0.0205005929
+        ],
+        "worldMax": [
+          -0.0138255656,
+          0.543218136,
+          0.00820022
+        ]
+      },
+      {
+        "name": "VH_M_cartilage_of_the_tertiary_bronchus_R",
+        "parent": "VH_M_right_bronchial_cartilage",
+        "geometry": "",
+        "material": [
+          "VH_M_rightFBXASC032tertiaryFBXASC032bronchial_cartilage1"
+        ],
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "worldMin": [
+          -0.102872245,
+          0.423028022,
+          -0.07655599
+        ],
+        "worldMax": [
+          -0.015558782,
+          0.5863212,
+          0.0485160574
+        ]
+      },
+      {
+        "name": "VH_M_right_intermediate_bronchus",
+        "parent": "VH_M_lobar_bronchi_R",
+        "geometry": "",
+        "material": [
+          "mucosa_mat4"
+        ],
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "worldMin": [
+          -0.04153891,
+          0.49638927,
+          -0.02103399
+        ],
+        "worldMax": [
+          -0.0133959064,
+          0.5318094,
+          -0.004548578
+        ]
+      },
+      {
+        "name": "VH_M_right_middle_lobar_bronchus",
+        "parent": "VH_M_lobar_bronchi_R",
+        "geometry": "",
+        "material": [
+          "mucosa_mat4"
+        ],
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "worldMin": [
+          -0.057230942,
+          0.487786353,
+          -0.011293673
+        ],
+        "worldMax": [
+          -0.0302944966,
+          0.5015129,
+          0.008942557
+        ]
+      },
+      {
+        "name": "VH_M_right_superior_lobar_bronchus",
+        "parent": "VH_M_lobar_bronchi_R",
+        "geometry": "",
+        "material": [
+          "mucosa_mat4"
+        ],
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "worldMin": [
+          -0.0456472,
+          0.5229929,
+          -0.0169838667
+        ],
+        "worldMax": [
+          -0.0235156268,
+          0.5421209,
+          -0.00310372352
+        ]
+      },
+      {
+        "name": "VH_M_right_anterior_bronchus",
+        "parent": "VH_M_tertiary_bronchi_R",
+        "geometry": "",
+        "material": [
+          "mucosa_mat4"
+        ],
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "worldMin": [
+          -0.10720703,
+          0.510176659,
+          -0.006514611
+        ],
+        "worldMax": [
+          -0.0306394361,
+          0.55237484,
+          0.06195285
+        ]
+      },
+      {
+        "name": "VH_M_right_lateral_basal_bronchus",
+        "parent": "VH_M_tertiary_bronchi_R",
+        "geometry": "",
+        "material": [
+          "mucosa_mat4"
+        ],
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "worldMin": [
+          -0.11000599,
+          0.43524918,
+          -0.07590796
+        ],
+        "worldMax": [
+          -0.048169177,
+          0.491393983,
+          -0.02700159
+        ]
+      },
+      {
+        "name": "VH_M_right_lateral_bronchus",
+        "parent": "VH_M_tertiary_bronchi_R",
+        "geometry": "",
+        "material": [
+          "mucosa_mat4"
+        ],
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "worldMin": [
+          -0.0839988142,
+          0.484218866,
+          0.0008047235
+        ],
+        "worldMax": [
+          -0.0553138629,
+          0.496889442,
+          0.0275971889
+        ]
+      },
+      {
+        "name": "VH_M_right_lower_lobar_bronchus",
+        "parent": "VH_M_tertiary_bronchi_R",
+        "geometry": "",
+        "material": [
+          "mucosa_mat4"
+        ],
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "worldMin": [
+          -0.0523117259,
+          0.481779,
+          -0.0306557324
+        ],
+        "worldMax": [
+          -0.0302944966,
+          0.505369842,
+          -0.00666230172
+        ]
+      },
+      {
+        "name": "VH_M_right_medial_basal_bronchus",
+        "parent": "VH_M_tertiary_bronchi_R",
+        "geometry": "",
+        "material": [
+          "mucosa_mat4"
+        ],
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "worldMin": [
+          -0.05421361,
+          0.425196558,
+          -0.0391625836
+        ],
+        "worldMax": [
+          -0.0151798408,
+          0.485669345,
+          -0.00445556175
+        ]
+      },
+      {
+        "name": "VH_M_right_medial_bronchus",
+        "parent": "VH_M_tertiary_bronchi_R",
+        "geometry": "",
+        "material": [
+          "mucosa_mat4"
+        ],
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "worldMin": [
+          -0.06569878,
+          0.468916565,
+          0.006311849
+        ],
+        "worldMax": [
+          -0.0444053821,
+          0.4935234,
+          0.0482058451
+        ]
+      },
+      {
+        "name": "VH_M_right_posterior_basal",
+        "parent": "VH_M_tertiary_bronchi_R",
+        "geometry": "",
+        "material": [
+          "mucosa_mat4"
+        ],
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "worldMin": [
+          -0.0549955629,
+          0.421887457,
+          -0.06935236
+        ],
+        "worldMax": [
+          -0.0274054874,
+          0.4895498,
+          -0.0239509679
+        ]
+      },
+      {
+        "name": "VH_M_right_posterior_bronchus",
+        "parent": "VH_M_tertiary_bronchi_R",
+        "geometry": "",
+        "material": [
+          "mucosa_mat4"
+        ],
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "worldMin": [
+          -0.07964558,
+          0.5255951,
+          -0.03980391
+        ],
+        "worldMax": [
+          -0.0420372039,
+          0.5609323,
+          -0.0121861221
+        ]
+      },
+      {
+        "name": "VH_M_right_superior_bronchus",
+        "parent": "VH_M_tertiary_bronchi_R",
+        "geometry": "",
+        "material": [
+          "mucosa_mat4"
+        ],
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "worldMin": [
+          -0.07686751,
+          0.4966055,
+          -0.07572852
+        ],
+        "worldMax": [
+          -0.019804474,
+          0.5465739,
+          -0.0195228
+        ]
+      },
+      {
+        "name": "VH_M_right_apical_bronchus",
+        "parent": "VH_M_tertiary_bronchi_R",
+        "geometry": "",
+        "material": [
+          "mucosa_mat4"
+        ],
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "worldMin": [
+          -0.0795915052,
+          0.538604856,
+          -0.0248829313
+        ],
+        "worldMax": [
+          -0.0220468771,
+          0.5943268,
+          0.0161771458
+        ]
+      },
+      {
+        "name": "VH_M_right_anterior_basal_bronchus",
+        "parent": "VH_M_tertiary_bronchi_R",
+        "geometry": "",
+        "material": [
+          "mucosa_mat4"
+        ],
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "worldMin": [
+          -0.101755969,
+          0.458928317,
+          -0.03250618
+        ],
+        "worldMax": [
+          -0.04406615,
+          0.492603362,
+          0.005308783
+        ]
+      },
+      {
+        "name": "VH_M_bronchus",
+        "parent": "VH_M_tertiary_bronchi_R",
+        "geometry": "",
+        "material": [
+          "mucosa_mat4"
+        ],
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "worldMin": [
+          -0.043740835,
+          0.4668851,
+          -0.05209414
+        ],
+        "worldMax": [
+          -0.01571915,
+          0.492767245,
+          -0.0285096169
+        ]
+      }
+    ]
+  },
+  {
+    "file": "trachea",
+    "bytes": 1184804,
+    "sha256": "0ba59ac521b0265dd70868e1b722f986a04fe3b4fcc1db950260219dcf978aae",
+    "asset": {
+      "version": "2.0",
+      "generator": "babylon.js glTF exporter for Autodesk MAYA 2023.2 v20220923.2"
+    },
+    "extensionsUsed": [],
+    "glbNodes": 4,
+    "glbMeshDefinitions": 3,
+    "meshInstances": 3,
+    "geometryCount": 3,
+    "materials": [
+      {
+        "name": "mucosa_mat6",
+        "type": "MeshStandardMaterial",
+        "color": "f1e8e2"
+      },
+      {
+        "name": "Cartilage_Mat2",
+        "type": "MeshStandardMaterial",
+        "color": "f7f6f5"
+      }
+    ],
+    "textures": 0,
+    "images": 0,
+    "sceneScale": [
+      1,
+      1,
+      1
+    ],
+    "scenePosition": [
+      0,
+      0,
+      0
+    ],
+    "sceneQuaternion": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "named": {
+      "VH_M_trachea_of_respiratory_system": {
+        "center": [
+          -0.0034295064500000005,
+          0.5971437500000001,
+          0.0206067133
+        ],
+        "min": [
+          -0.0193131734,
+          0.5341464,
+          -0.0130082034
+        ],
+        "max": [
+          0.0124541605,
+          0.6601411,
+          0.05422163
+        ],
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ]
+      }
+    },
+    "meshes": [
+      {
+        "name": "VH_M_trachea",
+        "parent": "VH_M_trachea_of_respiratory_system",
+        "geometry": "",
+        "material": [
+          "mucosa_mat6"
+        ],
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "worldMin": [
+          -0.0193131734,
+          0.5341464,
+          -0.0130082034
+        ],
+        "worldMax": [
+          0.0124541605,
+          0.6601411,
+          0.05422163
+        ]
+      },
+      {
+        "name": "VH_M_tracheal_cartilage",
+        "parent": "VH_M_trachea",
+        "geometry": "",
+        "material": [
+          "Cartilage_Mat2"
+        ],
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "worldMin": [
+          -0.0165274367,
+          0.5460689,
+          -0.00702791661
+        ],
+        "worldMax": [
+          0.0124541605,
+          0.6316353,
+          0.047662098
+        ]
+      },
+      {
+        "name": "VH_M_carina",
+        "parent": "VH_M_trachea",
+        "geometry": "",
+        "material": [
+          "Cartilage_Mat2"
+        ],
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "worldMin": [
+          -0.0193131734,
+          0.5341464,
+          -0.01225387
+        ],
+        "worldMax": [
+          0.008296262,
+          0.5489915,
+          0.004162557
+        ]
+      }
+    ]
+  },
+  {
+    "file": "main-bronchus",
+    "bytes": 422208,
+    "sha256": "6db5b11213570514f9c2f637423cd1b369ed6a796fb2f661193b708aba1733fa",
+    "asset": {
+      "version": "2.0",
+      "generator": "babylon.js glTF exporter for Autodesk MAYA 2023.2 v20220923.2"
+    },
+    "extensionsUsed": [],
+    "glbNodes": 5,
+    "glbMeshDefinitions": 4,
+    "meshInstances": 4,
+    "geometryCount": 4,
+    "materials": [
+      {
+        "name": "mucosa_mat5",
+        "type": "MeshStandardMaterial",
+        "color": "f1e8e2"
+      },
+      {
+        "name": "VH_M_leftFBXASC032mainFBXASC032bronchusFBXASC032bronchial_cartilage1",
+        "type": "MeshStandardMaterial",
+        "color": "bcbcbc"
+      },
+      {
+        "name": "VH_M_rightFBXASC032mainFBXASC032bronchusFBXASC032bronchial_cartilage1",
+        "type": "MeshStandardMaterial",
+        "color": "bcbcbc"
+      }
+    ],
+    "textures": 0,
+    "images": 0,
+    "sceneScale": [
+      1,
+      1,
+      1
+    ],
+    "scenePosition": [
+      0,
+      0,
+      0
+    ],
+    "sceneQuaternion": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "named": {
+      "VH_M_right_main_bronchus": {
+        "center": [
+          -0.01684346295,
+          0.5359096,
+          -0.007590608445
+        ],
+        "min": [
+          -0.0272083469,
+          0.5238653,
+          -0.0168633815
+        ],
+        "max": [
+          -0.006478579,
+          0.5479539,
+          0.00168216461
+        ],
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ]
+      },
+      "VH_M_left_main_bronchus": {
+        "center": [
+          0.021734129180000002,
+          0.52593025,
+          -0.01304011255
+        ],
+        "min": [
+          -0.00404654164,
+          0.5038065,
+          -0.02583664
+        ],
+        "max": [
+          0.0475148,
+          0.548054,
+          -0.0002435851
+        ],
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ]
+      }
+    },
+    "meshes": [
+      {
+        "name": "VH_M_left_main_bronchus",
+        "parent": "VH_M_main_bronchi",
+        "geometry": "",
+        "material": [
+          "mucosa_mat5"
+        ],
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "worldMin": [
+          -0.00404654164,
+          0.5038065,
+          -0.02583664
+        ],
+        "worldMax": [
+          0.0475148,
+          0.548054,
+          -0.0002435851
+        ]
+      },
+      {
+        "name": "VH_M_cartilage_of_the_main_bronchus_L",
+        "parent": "VH_M_left_main_bronchus",
+        "geometry": "",
+        "material": [
+          "VH_M_leftFBXASC032mainFBXASC032bronchusFBXASC032bronchial_cartilage1"
+        ],
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "worldMin": [
+          -0.000668792054,
+          0.5046085,
+          -0.0237912312
+        ],
+        "worldMax": [
+          0.0400722027,
+          0.540623069,
+          -0.0010246837
+        ]
+      },
+      {
+        "name": "VH_M_right_main_bronchus",
+        "parent": "VH_M_main_bronchi",
+        "geometry": "",
+        "material": [
+          "mucosa_mat5"
+        ],
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "worldMin": [
+          -0.0272083469,
+          0.5238653,
+          -0.0168633815
+        ],
+        "worldMax": [
+          -0.006478579,
+          0.5479539,
+          0.00168216461
+        ]
+      },
+      {
+        "name": "VH_M_cartilage_of_the_main_bronchus_R",
+        "parent": "VH_M_right_main_bronchus",
+        "geometry": "",
+        "material": [
+          "VH_M_rightFBXASC032mainFBXASC032bronchusFBXASC032bronchial_cartilage1"
+        ],
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "worldMin": [
+          -0.0260892585,
+          0.523928761,
+          -0.0140240919
+        ],
+        "worldMax": [
+          -0.00755593646,
+          0.5418293,
+          0.000589169271
+        ]
+      }
+    ]
+  }
+]

@@ -1,0 +1,12 @@
+import { chromium } from 'playwright-core';
+import assert from 'node:assert/strict';
+const b=await chromium.launch({executablePath:process.env.CHROMIUM_PATH || '/tmp/chromium',args:['--no-sandbox','--disable-dev-shm-usage','--use-gl=angle','--use-angle=swiftshader','--enable-unsafe-swiftshader']});
+const p=await b.newPage({viewport:{width:900,height:700}});
+await p.goto(`${process.env.TEST_BASE_URL || 'http://127.0.0.1:5173'}/tests/camera-harness.html`);await p.waitForFunction(()=>window.cameraTest);await p.waitForTimeout(200);
+const state=()=>p.evaluate(()=>window.cameraTest.state()); const initial=await state();
+assert.deepEqual(initial.target,[0,.52,0]);const box=await p.locator('canvas').boundingBox();
+await p.mouse.move(box.x+300,box.y+240);await p.mouse.down();await p.mouse.move(box.x+420,box.y+300,{steps:5});await p.mouse.up();await p.mouse.wheel(0,-300);await p.mouse.down({button:'right'});await p.mouse.move(box.x+390,box.y+280,{steps:5});await p.mouse.up({button:'right'});
+const changed=await state();assert.notDeepEqual(changed.position,initial.position);await p.evaluate(()=>window.cameraTest.reset());await p.waitForTimeout(100);const early=await state();await p.waitForTimeout(900);const reset=await state();
+for(const key of ['position','quaternion','target']) for(let i=0;i<initial[key].length;i++) assert.ok(Math.abs(initial[key][i]-reset[key][i])<1e-6,`${key}[${i}] ${initial[key][i]} != ${reset[key][i]}`);
+for(const key of ['zoom','distance']) assert.ok(Math.abs(initial[key]-reset[key])<1e-6,`${key}: ${initial[key]} != ${reset[key]}`);assert.equal(reset.damping,initial.damping); for(const key of ['position','quaternion','target']) for(let i=0;i<initial[key].length;i++) assert.ok(Math.abs(initial[key][i]-early[key][i])<1e-6,`early ${key}`);
+console.log(JSON.stringify({initial,changed,reset}));await b.close();

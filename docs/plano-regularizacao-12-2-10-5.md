@@ -1,0 +1,20 @@
+# Plano de regularização — 12.2.10.5
+
+Ações são sugestões, não autorizações nem parecer. Nenhum titular foi contatado. Alternativas não autorizam alterações de código, conteúdo ou recursos. Bloqueio significa medida preventiva, não violação.
+
+| Pendência | Falta / por quê | Evidência e onde obtê-la | Terceiros? | Alternativa viável, dependente de decisão e autorização | Bloqueio enquanto aberta |
+|---|---|---|---|---|---|
+| Lista documental | Lista original e D09 ausente; identificação e anexos precisam ser íntegros | usuário/histórico da solicitação e arquivo correto; leitura registrada por seção e anexos | usuário | indicar explicitamente lista revisada e justificar diferenças | conclusão integral da auditoria |
+| E029 | Correção da descrição foi comprovada, mas direitos não | histórico visual no [catálogo](catalogo-capturas-12-2-10-5.md); titularidade e direitos de elementos | titular/jurídico | manter como evidência privada | divulgação E029 |
+| E039/E040 | Identificação anatômica dos fragmentos não é demonstrável na resolução | análise qualificada do modelo/capturas contextualizadas e mapeamento técnico `tests/identificacao-1229.mjs` | especialista | nova evidência visual em fase autorizada, sem substituir originais | alegação anatômica e divulgação pendente dos direitos |
+| P09 código e conteúdo | Criadores, cadeia, autorizações por obra e canal | contribuições, acordos, licenças e fontes com titular do projeto; histórico Git completo pode auxiliar mas não provar cessão | titulares/jurídico | identificar recursos alternativos com direitos comprovados apenas se aprovado | fonte, web, pacote e conteúdo |
+| P10 capturas | Direitos das composições e dos elementos, crédito quando aplicável | registros de criação, modelo/licenças, ícones e texto por imagem/canal | titulares/jurídico | selecionar um subconjunto ou criar novas evidências somente com aprovação | divulgação das 56 |
+| P06/P07 GLBs | Atribuições por canal e direitos anteriores | metadados HRA, avisos originais, documentação NLM ou decisão jurídica fundamentada | possivelmente HRA/NLM e jurídico; requer autorização prévia para contato | distribuir em cenário documentado ou decisão jurídica sobre a cadeia; nenhuma liberação automática | GLBs em cada canal e produto |
+| P08 favicon | Marca e origem de aquisição | análise de sinal/mercado, histórico da aquisição e autorização se necessária | titular/jurídico | propor identidade própria com direitos verificados após autorização | identidade e produto para distribuição |
+| P11/P13 dependências e notices | Texto exato, avisos internos e acesso no artefato de cada canal | LICENSE/NOTICE do pacote efetivo, mapa de módulos, build e evidência de entrega | eventualmente jurídico | configurar acesso a avisos em fase autorizada; sem mudanças agora | fonte, site e pacote completo |
+| P12 fontes remotas | Versões/respostas reais e privacidade | resposta do serviço em ambiente permitido e licenças para arquivos efetivos | possível operador de fonte, privacidade | fonte local licenciada se autorizada e verificada, sem troca agora | canal com fontes remotas ou cópias não avaliadas |
+| P16 Draco | Hash/licença/NOTICE dos três possíveis arquivos remotos e necessidade por cenário | CDN oficial em rede permitida, documentação de release, comparação binária e teste de rede | possível provedor ou jurídico | cenário comprovadamente sem uso do decoder, sem removê-lo | distribuição/uso do binário não verificado no cenário aplicável |
+| P14 revisão formal | Avaliação específica de jurisdição, canal e artefato | parecer e decisão do titular documentados | jurídico e titular | nenhuma dispensa presumida | distribuição produto completo |
+| P15 README/aquisição | Declaração desatualizada e data da aquisição | histórico, recibos e revisão de texto | mantenedor | propor atualização documental após autorização | comunicação de release adequada |
+
+P01–P05 são tarefas documentais concluídas no escopo de 12.2.10.2; P06–P16 permanecem abertas. Não há contato, compra, assinatura ou compromisso assumido nesta fase.

@@ -1,0 +1,740 @@
+[
+  {
+    "id": "cranio",
+    "name": "Crânio",
+    "scientific": "Cranium",
+    "system": "esqueletico",
+    "shape": "sphere",
+    "pos": [
+      0,
+      2.6,
+      0
+    ],
+    "scale": [
+      0.55,
+      0.65,
+      0.6
+    ],
+    "color": "#E8E3D8"
+  },
+  {
+    "id": "mandibula",
+    "name": "Mandíbula",
+    "scientific": "Mandibula",
+    "system": "esqueletico",
+    "shape": "box",
+    "pos": [
+      0,
+      2.15,
+      0.15
+    ],
+    "scale": [
+      0.5,
+      0.22,
+      0.4
+    ],
+    "color": "#D8D2C4"
+  },
+  {
+    "id": "coluna",
+    "name": "Coluna Vertebral",
+    "scientific": "Columna vertebralis",
+    "system": "esqueletico",
+    "shape": "cylinder",
+    "pos": [
+      0,
+      1.2,
+      -0.35
+    ],
+    "scale": [
+      0.28,
+      1.9,
+      0.28
+    ],
+    "color": "#E8E3D8"
+  },
+  {
+    "id": "costelas",
+    "name": "Costelas",
+    "scientific": "Costae",
+    "system": "esqueletico",
+    "shape": "torus",
+    "pos": [
+      0,
+      1.7,
+      0
+    ],
+    "scale": [
+      1.1,
+      0.9,
+      0.7
+    ],
+    "color": "#E8E3D8"
+  },
+  {
+    "id": "umeros",
+    "name": "Úmero",
+    "scientific": "Humerus",
+    "system": "esqueletico",
+    "shape": "capsule",
+    "pos": [
+      -0.95,
+      1.5,
+      0
+    ],
+    "scale": [
+      0.16,
+      1,
+      0.16
+    ],
+    "color": "#E8E3D8"
+  },
+  {
+    "id": "femur",
+    "name": "Fêmur",
+    "scientific": "Femur",
+    "system": "esqueletico",
+    "shape": "capsule",
+    "pos": [
+      -0.35,
+      0.7,
+      0
+    ],
+    "scale": [
+      0.2,
+      1.2,
+      0.2
+    ],
+    "color": "#E8E3D8"
+  },
+  {
+    "id": "deltoide",
+    "name": "Deltoide",
+    "scientific": "Musculus deltoideus",
+    "system": "muscular",
+    "shape": "sphere",
+    "pos": [
+      -0.85,
+      2,
+      0
+    ],
+    "scale": [
+      0.35,
+      0.45,
+      0.35
+    ],
+    "color": "#FF6B6B"
+  },
+  {
+    "id": "peitoral",
+    "name": "Peitoral Maior",
+    "scientific": "Musculus pectoralis major",
+    "system": "muscular",
+    "shape": "box",
+    "pos": [
+      0,
+      1.85,
+      0.45
+    ],
+    "scale": [
+      0.9,
+      0.55,
+      0.25
+    ],
+    "color": "#FF6B6B"
+  },
+  {
+    "id": "biceps",
+    "name": "Bíceps Braquial",
+    "scientific": "Musculus biceps brachii",
+    "system": "muscular",
+    "shape": "capsule",
+    "pos": [
+      -0.95,
+      1.5,
+      0.2
+    ],
+    "scale": [
+      0.22,
+      0.8,
+      0.22
+    ],
+    "color": "#FF6B6B"
+  },
+  {
+    "id": "triceps",
+    "name": "Tríceps Braquial",
+    "scientific": "Musculus triceps brachii",
+    "system": "muscular",
+    "shape": "capsule",
+    "pos": [
+      -0.95,
+      1.5,
+      -0.2
+    ],
+    "scale": [
+      0.22,
+      0.8,
+      0.22
+    ],
+    "color": "#FF6B6B"
+  },
+  {
+    "id": "gluteo",
+    "name": "Glúteo Máximo",
+    "scientific": "Musculus gluteus maximus",
+    "system": "muscular",
+    "shape": "sphere",
+    "pos": [
+      -0.35,
+      1,
+      -0.4
+    ],
+    "scale": [
+      0.45,
+      0.5,
+      0.3
+    ],
+    "color": "#FF6B6B"
+  },
+  {
+    "id": "quadriceps",
+    "name": "Quadríceps Femoral",
+    "scientific": "Musculus quadriceps femoris",
+    "system": "muscular",
+    "shape": "capsule",
+    "pos": [
+      -0.35,
+      0.75,
+      0.3
+    ],
+    "scale": [
+      0.35,
+      0.9,
+      0.35
+    ],
+    "color": "#FF6B6B"
+  },
+  {
+    "id": "diafragma-m",
+    "name": "Diafragma",
+    "scientific": "Diaphragma",
+    "system": "muscular",
+    "shape": "cylinder",
+    "pos": [
+      0,
+      1.15,
+      0
+    ],
+    "scale": [
+      1,
+      0.2,
+      0.7
+    ],
+    "color": "#FF6B6B"
+  },
+  {
+    "id": "encefalo",
+    "name": "Encéfalo",
+    "scientific": "Encephalon",
+    "system": "nervoso",
+    "shape": "sphere",
+    "pos": [
+      0,
+      2.6,
+      0
+    ],
+    "scale": [
+      0.5,
+      0.55,
+      0.55
+    ],
+    "color": "#B388FF"
+  },
+  {
+    "id": "medula",
+    "name": "Medula Espinhal",
+    "scientific": "Medulla spinalis",
+    "system": "nervoso",
+    "shape": "capsule",
+    "pos": [
+      0,
+      1.2,
+      -0.35
+    ],
+    "scale": [
+      0.16,
+      1.7,
+      0.16
+    ],
+    "color": "#B388FF"
+  },
+  {
+    "id": "neuronio",
+    "name": "Neurônio",
+    "scientific": "Neuron",
+    "system": "nervoso",
+    "shape": "sphere",
+    "pos": [
+      0.7,
+      2.2,
+      0.3
+    ],
+    "scale": [
+      0.3,
+      0.3,
+      0.3
+    ],
+    "color": "#B388FF"
+  },
+  {
+    "id": "coracao",
+    "name": "Coração",
+    "scientific": "Cor",
+    "system": "cardiovascular",
+    "shape": "sphere",
+    "pos": [
+      0,
+      1.7,
+      0.1
+    ],
+    "scale": [
+      0.45,
+      0.5,
+      0.45
+    ],
+    "color": "#FF4D6D"
+  },
+  {
+    "id": "aorta",
+    "name": "Aorta",
+    "scientific": "Aorta",
+    "system": "cardiovascular",
+    "shape": "torus",
+    "pos": [
+      0,
+      1.9,
+      -0.15
+    ],
+    "scale": [
+      0.18,
+      0.9,
+      0.18
+    ],
+    "color": "#FF4D6D"
+  },
+  {
+    "id": "veia-cava",
+    "name": "Veia Cava Superior",
+    "scientific": "Vena cava superior",
+    "system": "cardiovascular",
+    "shape": "capsule",
+    "pos": [
+      0,
+      2.1,
+      0.05
+    ],
+    "scale": [
+      0.16,
+      0.6,
+      0.16
+    ],
+    "color": "#287BFF"
+  },
+  {
+    "id": "pulmao-d",
+    "name": "Pulmão Direito",
+    "scientific": "Pulmo dexter",
+    "system": "respiratorio",
+    "shape": "sphere",
+    "pos": [
+      0.55,
+      1.7,
+      0
+    ],
+    "scale": [
+      0.4,
+      0.7,
+      0.45
+    ],
+    "color": "#4DD0E1"
+  },
+  {
+    "id": "pulmao-e",
+    "name": "Pulmão Esquerdo",
+    "scientific": "Pulmo sinister",
+    "system": "respiratorio",
+    "shape": "sphere",
+    "pos": [
+      -0.55,
+      1.7,
+      0
+    ],
+    "scale": [
+      0.4,
+      0.7,
+      0.45
+    ],
+    "color": "#4DD0E1"
+  },
+  {
+    "id": "traqueia",
+    "name": "Traqueia",
+    "scientific": "Trachea",
+    "system": "respiratorio",
+    "shape": "cylinder",
+    "pos": [
+      0,
+      2.2,
+      0.1
+    ],
+    "scale": [
+      0.14,
+      0.7,
+      0.14
+    ],
+    "color": "#4DD0E1"
+  },
+  {
+    "id": "laringe",
+    "name": "Laringe",
+    "scientific": "Larynx",
+    "system": "respiratorio",
+    "shape": "box",
+    "pos": [
+      0,
+      2.45,
+      0.15
+    ],
+    "scale": [
+      0.25,
+      0.3,
+      0.25
+    ],
+    "color": "#4DD0E1"
+  },
+  {
+    "id": "figado",
+    "name": "Fígado",
+    "scientific": "Hepar",
+    "system": "digestorio",
+    "shape": "sphere",
+    "pos": [
+      0.25,
+      1.15,
+      0.1
+    ],
+    "scale": [
+      0.7,
+      0.35,
+      0.4
+    ],
+    "color": "#A0522D"
+  },
+  {
+    "id": "estomago",
+    "name": "Estômago",
+    "scientific": "Ventriculus",
+    "system": "digestorio",
+    "shape": "sphere",
+    "pos": [
+      -0.2,
+      1.1,
+      0.15
+    ],
+    "scale": [
+      0.5,
+      0.4,
+      0.4
+    ],
+    "color": "#FFA726"
+  },
+  {
+    "id": "intestino",
+    "name": "Intestino Delgado",
+    "scientific": "Intestinum tenue",
+    "system": "digestorio",
+    "shape": "torus",
+    "pos": [
+      0,
+      0.85,
+      0.15
+    ],
+    "scale": [
+      0.7,
+      0.5,
+      0.5
+    ],
+    "color": "#FFA726"
+  },
+  {
+    "id": "pancreas",
+    "name": "Pâncreas",
+    "scientific": "Pancreas",
+    "system": "digestorio",
+    "shape": "box",
+    "pos": [
+      0,
+      1.05,
+      -0.1
+    ],
+    "scale": [
+      0.6,
+      0.18,
+      0.25
+    ],
+    "color": "#FFA726"
+  },
+  {
+    "id": "rim-d",
+    "name": "Rim Direito",
+    "scientific": "Ren dexter",
+    "system": "urinario",
+    "shape": "sphere",
+    "pos": [
+      0.55,
+      1,
+      -0.2
+    ],
+    "scale": [
+      0.28,
+      0.4,
+      0.25
+    ],
+    "color": "#FFD54F"
+  },
+  {
+    "id": "rim-e",
+    "name": "Rim Esquerdo",
+    "scientific": "Ren sinister",
+    "system": "urinario",
+    "shape": "sphere",
+    "pos": [
+      -0.55,
+      1,
+      -0.2
+    ],
+    "scale": [
+      0.28,
+      0.4,
+      0.25
+    ],
+    "color": "#FFD54F"
+  },
+  {
+    "id": "bexiga",
+    "name": "Bexiga Urinária",
+    "scientific": "Vesica urinaria",
+    "system": "urinario",
+    "shape": "sphere",
+    "pos": [
+      0,
+      0.45,
+      0.15
+    ],
+    "scale": [
+      0.35,
+      0.35,
+      0.35
+    ],
+    "color": "#FFD54F"
+  },
+  {
+    "id": "testiculo",
+    "name": "Testículo",
+    "scientific": "Testis",
+    "system": "reprodutor",
+    "shape": "sphere",
+    "pos": [
+      0.15,
+      0.25,
+      0.2
+    ],
+    "scale": [
+      0.18,
+      0.22,
+      0.18
+    ],
+    "color": "#F48FB1"
+  },
+  {
+    "id": "ovario",
+    "name": "Ovário",
+    "scientific": "Ovarium",
+    "system": "reprodutor",
+    "shape": "sphere",
+    "pos": [
+      -0.4,
+      0.4,
+      0
+    ],
+    "scale": [
+      0.2,
+      0.25,
+      0.2
+    ],
+    "color": "#F48FB1"
+  },
+  {
+    "id": "utero",
+    "name": "Útero",
+    "scientific": "Uterus",
+    "system": "reprodutor",
+    "shape": "sphere",
+    "pos": [
+      0,
+      0.5,
+      0
+    ],
+    "scale": [
+      0.3,
+      0.4,
+      0.3
+    ],
+    "color": "#F48FB1"
+  },
+  {
+    "id": "pele",
+    "name": "Pele (Tegumento)",
+    "scientific": "Cutis",
+    "system": "tegumentar",
+    "shape": "cylinder",
+    "pos": [
+      0,
+      1.5,
+      0
+    ],
+    "scale": [
+      1.5,
+      2.6,
+      1
+    ],
+    "color": "#AED581"
+  },
+  {
+    "id": "epiderme",
+    "name": "Epiderme",
+    "scientific": "Epidermis",
+    "system": "tegumentar",
+    "shape": "box",
+    "pos": [
+      0.8,
+      1.5,
+      0.35
+    ],
+    "scale": [
+      0.08,
+      2,
+      0.8
+    ],
+    "color": "#AED581"
+  },
+  {
+    "id": "derme",
+    "name": "Derme",
+    "scientific": "Dermis",
+    "system": "tegumentar",
+    "shape": "box",
+    "pos": [
+      0.8,
+      1.5,
+      0.2
+    ],
+    "scale": [
+      0.1,
+      2,
+      0.8
+    ],
+    "color": "#8BC34A"
+  },
+  {
+    "id": "hipoderme",
+    "name": "Hipoderme",
+    "scientific": "Hypodermis",
+    "system": "tegumentar",
+    "shape": "box",
+    "pos": [
+      0.8,
+      1.5,
+      0.05
+    ],
+    "scale": [
+      0.12,
+      2,
+      0.8
+    ],
+    "color": "#689F38"
+  },
+  {
+    "id": "orbicular",
+    "name": "Orbicular do Olho",
+    "scientific": "Musculus orbicularis oculi",
+    "system": "cabeca-pescoco",
+    "shape": "torus",
+    "pos": [
+      0.25,
+      2.5,
+      0.45
+    ],
+    "scale": [
+      0.3,
+      0.3,
+      0.1
+    ],
+    "color": "#90CAF9"
+  },
+  {
+    "id": "masseter",
+    "name": "Masseter",
+    "scientific": "Musculus masseter",
+    "system": "cabeca-pescoco",
+    "shape": "box",
+    "pos": [
+      0.35,
+      2.2,
+      0.2
+    ],
+    "scale": [
+      0.25,
+      0.4,
+      0.25
+    ],
+    "color": "#90CAF9"
+  },
+  {
+    "id": "colageno",
+    "name": "Colágeno",
+    "scientific": "Collagenum",
+    "system": "estetica",
+    "shape": "box",
+    "pos": [
+      0.8,
+      1.5,
+      0
+    ],
+    "scale": [
+      0.08,
+      1.8,
+      0.7
+    ],
+    "color": "#CE93D8"
+  },
+  {
+    "id": "gordura-facial",
+    "name": "Compartimentos de Gordura Facial",
+    "scientific": "— (termo descritivo)",
+    "system": "estetica",
+    "shape": "sphere",
+    "pos": [
+      0.3,
+      2.3,
+      0.4
+    ],
+    "scale": [
+      0.35,
+      0.4,
+      0.15
+    ],
+    "color": "#CE93D8"
+  }
+]

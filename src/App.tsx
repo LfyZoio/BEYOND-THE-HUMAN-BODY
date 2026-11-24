@@ -4,7 +4,7 @@ import { StoreProvider, useStore } from './store';
 import { Dashboard, Journey, DailyPlan } from './pages/Dashboard';
 import { Lesson } from './pages/Lesson';
 import { Library as LibraryPage, Systems } from './pages/Library';
-import Lab3D from './components/Lab3D';
+import Lab3D from './components/LazyLab3D';
 import { Questions, Flashcards, SmartReview, Assessments } from './pages/Practice';
 import { Performance, Profile, Settings } from './pages/Performance';
 import { PageTitle } from './components/ui';
@@ -68,7 +68,7 @@ function Shell() {
         </div>
       )}
       <div className="flex-1 min-w-0">
-        <header className="lg:hidden sticky top-0 z-40 bg-[#080E18]/95 backdrop-blur border-b border-[#26364A] px-4 py-3 flex items-center justify-between">
+        <header className="mobile-header lg:hidden sticky top-0 z-40 bg-[#080E18]/95 backdrop-blur border-b border-[#26364A] px-4 py-3 flex items-center justify-between">
           <button onClick={() => setMobile(true)} aria-label="Abrir menu">{mobile ? <X size={24} /> : <Menu size={24} />}</button>
           <span className="font-extrabold">ANATOMIA 3D</span>
           <span className="text-xs text-[#00C8FF] font-bold">{state.xp} XP</span>
@@ -79,7 +79,7 @@ function Shell() {
             : page === 'jornada' ? <Journey go={go} />
             : page === 'plano' ? <DailyPlan openLesson={openLesson} />
             : page === 'biblioteca' ? <LibraryPage />
-            : page === 'lab' ? (<div><PageTitle title="Laboratório Anatômico 3D" sub="Explore estruturas em 3D, selecione, isole e identifique. Modelos esquemáticos procedurais (Three.js)." /><Lab3D /></div>)
+            : page === 'lab' ? (<div><PageTitle title="Laboratório Anatômico 3D" sub="Explore estruturas em 3D: laboratório esquemático e piloto anatômico respiratório experimental." /><Lab3D /></div>)
             : page === 'sistemas' ? <Systems />
             : page === 'questoes' ? <Questions />
             : page === 'memorizacao' ? <Flashcards />

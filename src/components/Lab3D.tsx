@@ -1,17 +1,31 @@
-import { Suspense, useMemo, useState } from 'react';
+import { Component, Suspense, lazy, useMemo, useState, type ReactNode } from 'react';
 import { Canvas } from '@react-three/fiber';
-import { OrbitControls, Html } from '@react-three/drei';
+import { OrbitControls, Html, useGLTF } from '@react-three/drei';
+import { RESPIRATORY_URLS } from './respiratoryAssets';
 import { STRUCTURES } from '../data/structures';
 import { useStore } from '../store';
 import type { StructureDef, SystemId } from '../types';
 import { Card, Empty } from './ui';
+
+const RespiratoryPilot = lazy(() => import('./RespiratoryPilot'));
+
+class PilotBoundary extends Component<{ onExit: () => void; children: ReactNode }, { failed: boolean }> {
+  state = { failed: false };
+  static getDerivedStateFromError() { return { failed: true }; }
+  componentDidCatch(error: Error) {
+    // A rejected useLoader promise is cached under the complete URL array.
+    // Evict only failed asset loads so returning and opening again can retry.
+    if (typeof error?.message === 'string' && RESPIRATORY_URLS.some(url => error.message.startsWith(`Could not load ${url}:`))) useGLTF.clear(RESPIRATORY_URLS);
+  }
+  render() { return this.state.failed ? <Card><p role="alert">Não foi possível carregar o piloto respiratório. O laboratório esquemático continua disponível.</p><button className="btn-ghost mt-3" onClick={this.props.onExit}>Voltar ao modelo esquemático</button></Card> : this.props.children; }
+}
 
 const SYSTEM_LABELS: Record<string, string> = {
   esqueletico: 'Esquelético', muscular: 'Muscular', nervoso: 'Nervoso', cardiovascular: 'Cardiovascular',
   respiratorio: 'Respiratório', digestorio: 'Digestório', urinario: 'Urinário', reprodutor: 'Reprodutor', tegumentar: 'Tegumentar',
 };
 
-function ShapeMesh({ s, selected, dimmed, onSelect }: { s: StructureDef; selected: boolean; dimmed: boolean; onSelect: (s: StructureDef) => void }) {
+function ShapeMesh({ s, selected, dimmed, showLabel, onSelect }: { s: StructureDef; selected: boolean; dimmed: boolean; showLabel: boolean; onSelect: (s: StructureDef) => void }) {
   const common = {
     position: s.pos as unknown as [number, number, number],
     scale: s.scale as unknown as [number, number, number],
@@ -30,7 +44,7 @@ function ShapeMesh({ s, selected, dimmed, onSelect }: { s: StructureDef; selecte
   return (
     <mesh {...common}>
       {geo}{mat}
-      {selected && (
+      {selected && showLabel && (
         <Html position={[0, 0.9, 0]} center>
           <div style={{ background: '#00C8FF', color: '#04121F', fontWeight: 800, fontSize: 12, padding: '4px 10px', borderRadius: 999, whiteSpace: 'nowrap' }}>{s.name}</div>
         </Html>
@@ -41,6 +55,7 @@ function ShapeMesh({ s, selected, dimmed, onSelect }: { s: StructureDef; selecte
 
 export default function Lab3D({ initialSystem }: { initialSystem?: SystemId }) {
   const { recordId3d, state } = useStore();
+  const [pilot, setPilot] = useState(false);
   const [system, setSystem] = useState<SystemId>(initialSystem ?? 'muscular');
   const [selected, setSelected] = useState<StructureDef | null>(null);
   const [isolate, setIsolate] = useState(false);
@@ -55,6 +70,7 @@ export default function Lab3D({ initialSystem }: { initialSystem?: SystemId }) {
     const target = items[Math.floor(Math.random() * items.length)];
     const others = items.filter(s => s.id !== target.id).sort(() => Math.random() - 0.5).slice(0, 3);
     const options = [...others, target].sort(() => Math.random() - 0.5);
+    setIsolate(false);
     setQuiz({ target, options, picked: null });
     setSelected(target);
   };
@@ -65,6 +81,8 @@ export default function Lab3D({ initialSystem }: { initialSystem?: SystemId }) {
     setQuizScore(q => ({ right: q.right + (correct ? 1 : 0), total: q.total + 1 }));
     setQuiz({ ...quiz, picked: id });
   };
+
+  if (pilot) return <PilotBoundary onExit={() => setPilot(false)}><Suspense fallback={<Card><p role="status">Carregando modelos respiratórios…</p><button className="btn-ghost mt-3" onClick={() => setPilot(false)}>Voltar ao modelo esquemático</button></Card>}><RespiratoryPilot onExit={() => setPilot(false)} /></Suspense></PilotBoundary>;
 
   return (
     <div className="grid lg:grid-cols-[1fr_360px] gap-4">
@@ -82,19 +100,20 @@ export default function Lab3D({ initialSystem }: { initialSystem?: SystemId }) {
             <directionalLight position={[-5, 3, -5]} intensity={0.4} />
             <Suspense fallback={null}>
               {visible.map(s => (
-                <ShapeMesh key={s.id} s={s} selected={selected?.id === s.id} dimmed={!!selected && selected.id !== s.id && !isolate} onSelect={setSelected} />
+                <ShapeMesh key={s.id} s={s} selected={selected?.id === s.id} dimmed={!!selected && selected.id !== s.id && !isolate} showLabel={!quiz || !!quiz.picked} onSelect={quiz && !quiz.picked ? () => {} : setSelected} />
               ))}
             </Suspense>
-            <OrbitControls enableDamping makeDefault />
+            <OrbitControls target={[0, 1.3, 0]} enableDamping makeDefault />
             <gridHelper args={[10, 10, '#26364A', '#142033']} position={[0, -0.4, 0]} />
           </Canvas>
         </div>
         <div className="flex flex-wrap gap-2 p-4 border-t border-[#26364A] no-print">
           <button className="btn-ghost !py-2 !px-3 text-sm" onClick={() => setIsolate(v => !v)}>{isolate ? 'Mostrar todas' : 'Isolar selecionada'}</button>
           <button className="btn-primary !py-2 !px-3 text-sm" onClick={startQuiz}>Atividade de identificação</button>
+          {system === 'respiratorio' && <button className="btn-ghost !py-2 !px-3 text-sm" onClick={() => setPilot(true)}>Abrir piloto anatômico experimental</button>}
           <span className="text-sm text-[#9BAFC4] self-center">Arraste para girar · scroll para zoom · clique numa estrutura para selecionar</span>
         </div>
-        <p className="px-4 pb-4 text-xs text-[#9BAFC4]">Modelos esquemáticos procedurais gerados com Three.js (geometrias primitivas) para estudo das relações espaciais. A estrutura técnica do visualizador (carregamento GLB/GLTF sob demanda, estados de carregamento e erro) está pronta para receber modelos anatômicos licenciados — nenhum modelo inexistente é apresentado como real.</p>
+        <p className="px-4 pb-4 text-xs text-[#9BAFC4]">Modelos esquemáticos procedurais gerados com Three.js (geometrias primitivas) para estudo das relações espaciais. Nenhum modelo anatômico licenciado está incluído.</p>
       </Card>
 
       <div className="space-y-4">
@@ -114,7 +133,7 @@ export default function Lab3D({ initialSystem }: { initialSystem?: SystemId }) {
             <p className="text-xs text-[#9BAFC4] mt-2">Acertos: {quizScore.right}/{quizScore.total} · Registrados no seu desempenho.</p>
           </Card>
         )}
-        {selected ? (
+        {selected && (!quiz || quiz.picked) ? (
           <Card>
             <div className="flex items-start justify-between gap-2">
               <div><h3 className="text-lg font-extrabold">{selected.name}</h3><p className="text-sm text-[#00C8FF] italic">{selected.scientific}</p></div>
@@ -137,7 +156,7 @@ export default function Lab3D({ initialSystem }: { initialSystem?: SystemId }) {
         <Card>
           <h4 className="font-bold mb-2">Estruturas deste sistema ({items.length})</h4>
           <div className="flex flex-wrap gap-2">
-            {items.map(s => <button key={s.id} onClick={() => setSelected(s)} className={`px-3 py-1.5 rounded-full text-xs font-semibold border ${selected?.id === s.id ? 'bg-[#00C8FF] text-[#04121F]' : 'border-[#26364A] text-[#9BAFC4]'}`}>{s.name}</button>)}
+            {items.map(s => <button key={s.id} disabled={!!quiz && !quiz.picked} onClick={() => setSelected(s)} className={`px-3 py-1.5 rounded-full text-xs font-semibold border ${selected?.id === s.id && (!quiz || quiz.picked) ? 'bg-[#00C8FF] text-[#04121F]' : 'border-[#26364A] text-[#9BAFC4]'}`}>{s.name}</button>)}
           </div>
           <p className="text-xs text-[#9BAFC4] mt-3">Identificações registradas: {state.id3d.length} · acertos: {state.id3d.filter(x => x.correct).length}</p>
         </Card>

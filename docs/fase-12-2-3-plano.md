@@ -1,0 +1,7 @@
+# Registro anterior à intervenção 12.2.3
+
+Linha de base: GLBs originais 12.548.080 bytes, 274.830 triângulos; todos os objetos compartilham geometria, mas o piloto clona um material por malha. Seleção muda transparência e emissividade; cada troca força `needsUpdate` em todos os materiais. Um Html central encobre estruturas pequenas. Antes de mudar: medir `renderer.info` e quantidade de materiais únicos no canvas real.
+
+Candidata reversível: reutilizar clone por material de origem dentro de cada grupo selecionável, nunca entre grupos; fazer descarte único e só invalidar shader ao mudar `transparent`. Benefício esperado é reduzir materiais alocados e atualizações repetidas, não necessariamente draw calls/FPS. Risco: alterar destaque/isolamento de outros grupos caso o cache seja global; cache será local por grupo, e testar todas as seleções, retorno, remount e fallback. Nenhuma alteração das malhas nem arquivos; licença CC BY 4.0 permite adaptação sob atribuição já presente. Comparar imagem, geometria e comportamento.
+
+Etiqueta: retirar do centro da malha e apresentar em área HTML dedicada fora do canvas com opção acessível de ocultá-la; destaque e painel permanecem. Isso elimina obstrução e facilita tela pequena, mas perde âncora visual direta; destacar a malha e identificar explicitamente a estrutura na área dedicada. Medir layout e opções em cinco larguras. Sem impactos em direitos dos GLB.

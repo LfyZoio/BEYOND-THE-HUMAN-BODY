@@ -1,0 +1,85 @@
+{
+  "browser": "153.0.8010.0",
+  "appMs": 583,
+  "labMs": 409,
+  "pilotMs": 826,
+  "app": [
+    {
+      "name": "index-BQKmKv_k.js",
+      "duration": 50.100000001490116,
+      "transfer": 263609,
+      "encoded": 263309
+    },
+    {
+      "name": "index-HNURogI5.css",
+      "duration": 14,
+      "transfer": 5969,
+      "encoded": 5669
+    }
+  ],
+  "lab": [
+    {
+      "name": "index-BQKmKv_k.js",
+      "duration": 50.100000001490116,
+      "transfer": 263609,
+      "encoded": 263309
+    },
+    {
+      "name": "index-HNURogI5.css",
+      "duration": 14,
+      "transfer": 5969,
+      "encoded": 5669
+    },
+    {
+      "name": "Lab3D-YPRoBpG3.js",
+      "duration": 48.30000000074506,
+      "transfer": 271877,
+      "encoded": 271577
+    }
+  ],
+  "pilot": [
+    {
+      "name": "index-BQKmKv_k.js",
+      "duration": 50.100000001490116,
+      "transfer": 263609,
+      "encoded": 263309
+    },
+    {
+      "name": "index-HNURogI5.css",
+      "duration": 14,
+      "transfer": 5969,
+      "encoded": 5669
+    },
+    {
+      "name": "Lab3D-YPRoBpG3.js",
+      "duration": 48.30000000074506,
+      "transfer": 271877,
+      "encoded": 271577
+    },
+    {
+      "name": "RespiratoryPilot-DwX23gK6.js",
+      "duration": 5.699999999254942,
+      "transfer": 3778,
+      "encoded": 3478
+    },
+    {
+      "name": "lung.glb",
+      "duration": 125,
+      "transfer": 10941368,
+      "encoded": 10941068
+    },
+    {
+      "name": "trachea.glb",
+      "duration": 26.299999998882413,
+      "transfer": 1185104,
+      "encoded": 1184804
+    },
+    {
+      "name": "main-bronchus.glb",
+      "duration": 12,
+      "transfer": 422508,
+      "encoded": 422208
+    }
+  ],
+  "errors": []
+}

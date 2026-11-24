@@ -1,0 +1,130 @@
+[
+  {
+    "name": "Voltar ao modelo esquemático",
+    "color": "rgb(245, 248, 252)",
+    "bg": "rgb(16, 24, 39)",
+    "w": 282.078125,
+    "h": 46,
+    "outline": "none"
+  },
+  {
+    "name": "Girar para a esquerda",
+    "color": "rgb(245, 248, 252)",
+    "bg": "rgb(16, 24, 39)",
+    "w": 213.796875,
+    "h": 46,
+    "outline": "none"
+  },
+  {
+    "name": "Girar para a direita",
+    "color": "rgb(245, 248, 252)",
+    "bg": "rgb(16, 24, 39)",
+    "w": 190.40625,
+    "h": 46,
+    "outline": "none"
+  },
+  {
+    "name": "Girar para cima",
+    "color": "rgb(245, 248, 252)",
+    "bg": "rgb(16, 24, 39)",
+    "w": 162.953125,
+    "h": 46,
+    "outline": "none"
+  },
+  {
+    "name": "Girar para baixo",
+    "color": "rgb(245, 248, 252)",
+    "bg": "rgb(16, 24, 39)",
+    "w": 167.5,
+    "h": 46,
+    "outline": "none"
+  },
+  {
+    "name": "Aproximar",
+    "color": "rgb(245, 248, 252)",
+    "bg": "rgb(16, 24, 39)",
+    "w": 120.515625,
+    "h": 46,
+    "outline": "none"
+  },
+  {
+    "name": "Afastar",
+    "color": "rgb(245, 248, 252)",
+    "bg": "rgb(16, 24, 39)",
+    "w": 94.8125,
+    "h": 46,
+    "outline": "none"
+  },
+  {
+    "name": "Isolar selecionada",
+    "color": "rgb(245, 248, 252)",
+    "bg": "rgb(16, 24, 39)",
+    "w": 182.171875,
+    "h": 46,
+    "outline": "auto"
+  },
+  {
+    "name": "Restaurar câmera",
+    "color": "rgb(245, 248, 252)",
+    "bg": "rgb(16, 24, 39)",
+    "w": 181.265625,
+    "h": 46,
+    "outline": "none"
+  },
+  {
+    "name": "Ocultar etiqueta",
+    "color": "rgb(245, 248, 252)",
+    "bg": "rgb(16, 24, 39)",
+    "w": 168.5,
+    "h": 46,
+    "outline": "none"
+  },
+  {
+    "name": "Pulmão direito",
+    "color": "rgb(245, 248, 252)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "w": 126.984375,
+    "h": 38,
+    "outline": "none"
+  },
+  {
+    "name": "Pulmão esquerdo",
+    "color": "rgb(245, 248, 252)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "w": 147.4375,
+    "h": 38,
+    "outline": "none"
+  },
+  {
+    "name": "Traqueia",
+    "color": "rgb(245, 248, 252)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "w": 85.671875,
+    "h": 38,
+    "outline": "none"
+  },
+  {
+    "name": "Brônquio principal direito",
+    "color": "rgb(4, 18, 31)",
+    "bg": "rgb(0, 200, 255)",
+    "w": 202.75,
+    "h": 38,
+    "outline": "none"
+  },
+  {
+    "name": "Brônquio principal esquerdo",
+    "color": "rgb(245, 248, 252)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "w": 223.203125,
+    "h": 38,
+    "outline": "none"
+  },
+  {
+    "name": "Limpar seleção",
+    "color": "rgb(245, 248, 252)",
+    "bg": "rgb(16, 24, 39)",
+    "w": 159.4375,
+    "h": 46,
+    "outline": "none"
+  }
+]

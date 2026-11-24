@@ -1,0 +1,19 @@
+{
+  "context": {
+    "supported": true,
+    "lost": true,
+    "after": false,
+    "events": [
+      "lost",
+      "restored"
+    ],
+    "calls": 65,
+    "triangles": 274830,
+    "select": "true"
+  },
+  "chunk": {
+    "retry": "error",
+    "requests": 1,
+    "errors": []
+  }
+}

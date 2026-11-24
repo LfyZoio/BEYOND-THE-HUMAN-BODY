@@ -18,7 +18,7 @@ export function gradeCardState(prev: CardState | undefined, grade: number, today
     reps += 1; interval = interval === 0 ? 3 : Math.max(2, Math.round(interval * ease)); ease = Math.min(3, ease + 0.1);
   }
   const due = new Date(new Date(today).getTime() + interval * 86400000).toISOString().slice(0, 10);
-  return { id: base.id, ease, interval, reps, lapses, due, history: [...base.history.slice(-50), { date: today, grade }] };
+  return { id: base.id, ease, interval, reps, lapses, due, history: [...base.history, { date: today, grade }] };
 }
 
 export function masteryLabel(pct: number): string {

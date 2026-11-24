@@ -3,7 +3,7 @@ import { useStore } from '../store';
 import { LIBRARY_ARTICLES } from '../data/structures';
 import { MODULES, SYSTEMS } from '../data/curriculum';
 import { Bar, Card, Empty, PageTitle } from '../components/ui';
-import Lab3D from '../components/Lab3D';
+import Lab3D from '../components/LazyLab3D';
 import type { SystemId } from '../types';
 
 export function Library() {
@@ -103,7 +103,7 @@ export function Systems() {
         {mod && <div className="mt-4"><h4 className="font-bold text-sm mb-2">Aulas do módulo</h4><div className="flex flex-wrap gap-2">{mod.lessons.map(l => <span key={l} className="badge bg-[#26364A] text-[#9BAFC4] !normal-case !text-xs">{l}</span>)}</div></div>}
         {sel === 'estetica' && <p className="text-xs text-[#9BAFC4] mt-3">Conteúdo exclusivamente educacional: anatomia da pele, gordura facial e músculos da expressão. Sem instruções de procedimentos invasivos ou intervenções clínicas.</p>}
       </Card>
-      <Lab3D initialSystem={sel} />
+      <Lab3D key={sel} initialSystem={sel} />
     </div>
   );
 }
